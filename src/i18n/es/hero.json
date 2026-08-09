@@ -1,0 +1,30 @@
+{
+  "locale": "es",
+  "languageLabel": "ES",
+  "languageName": "English",
+  "languageHref": "/en/",
+  "brandHref": "/",
+  "nav": {
+    "capabilities": "Capacidades",
+    "integrations": "Integraciones",
+    "pricing": "Planes",
+    "createAccount": "Crear cuenta",
+    "signIn": "Iniciar sesión"
+  },
+  "announcement": "Presentamos Camila 2.0. El agente más avanzado para proyectos inmobiliarios.",
+  "headline": {
+    "lineOne": "El sector inmobiliario nunca para.",
+    "lineTwoPrefix": "Tú tampoco. ",
+    "accent": "Conoce a Camila."
+  },
+  "description": "Brinda una atención inmediata y personalizada a cada lead, desde el primer contacto hasta la reserva de una propiedad, manteniendo una experiencia humana 24/7.",
+  "primaryCta": "Probar ahora",
+  "secondaryCta": "Hablar con ventas",
+  "location": "HECHO EN CHICLAYO 🇵🇪",
+  "partnerLabel": "Seleccionados por:",
+  "partnerAlt": "emprelatam",
+  "meta": {
+    "title": "Camila 2.0 | El asesor virtual para inmobiliarias",
+    "description": "Atención inmediata y personalizada para cada lead inmobiliario, desde el primer contacto hasta la reserva de una propiedad."
+  }
+}

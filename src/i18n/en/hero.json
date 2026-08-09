@@ -1,0 +1,30 @@
+{
+  "locale": "en",
+  "languageLabel": "EN",
+  "languageName": "Español",
+  "languageHref": "/",
+  "brandHref": "/en/",
+  "nav": {
+    "capabilities": "Features",
+    "integrations": "Integrations",
+    "pricing": "Pricing",
+    "createAccount": "Create account",
+    "signIn": "Login"
+  },
+  "announcement": "Introducing Camila 2.0. The most advanced agent for real estate projects.",
+  "headline": {
+    "lineOne": "Real estate never stops.",
+    "lineTwoPrefix": "Neither you do. ",
+    "accent": "Meet Camila."
+  },
+  "description": "Delivers immediate, personalized attention to every lead, from first contact to property reservation, while maintaining a human experience 24/7.",
+  "primaryCta": "Try now",
+  "secondaryCta": "Talk to Sales",
+  "location": "MADE IN CHICLAYO 🇵🇪",
+  "partnerLabel": "Selected by:",
+  "partnerAlt": "emprelatam",
+  "meta": {
+    "title": "Camila 2.0 | The AI agent for real estate projects",
+    "description": "Immediate, personalized attention for every real estate lead, from first contact to property reservation."
+  }
+}

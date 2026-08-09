@@ -1,0 +1,12 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Hero from "../../components/Hero.astro";
+import Features from "../../components/Features.astro";
+import heroCopy from "../../i18n/en/hero.json";
+import featuresCopy from "../../i18n/en/features.json";
+---
+
+<BaseLayout lang="en" title={heroCopy.meta.title} description={heroCopy.meta.description}>
+  <Hero data={heroCopy} />
+  <Features data={featuresCopy} />
+</BaseLayout>

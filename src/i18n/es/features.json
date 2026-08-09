@@ -1,0 +1,47 @@
+{
+  "locale": "es",
+  "label": "Capacidades",
+  "heading": {
+    "lineOne": "“Todo lo que puede hacer Camila",
+    "lineTwoPrefix": "para tu ",
+    "accent": "operación comercial”"
+  },
+  "items": [
+    {
+      "title": "Filtra los leads con mayor intención de compra.",
+      "description": "Camila analiza el perfil de cada lead y compara cada respuesta con el manual interno de ventas. Además de realizar consultas directas a RENIEC, SUNAT y SUNARP.",
+      "image": "/images/Feature-01-leads.png",
+      "imageWebp": "/images/Feature-01-leads.webp",
+      "imageAlt": "Vista de lead scoring y detalle de contacto en Camila.",
+      "width": 702,
+      "height": 501
+    },
+    {
+      "title": "Actualización automática de tu inventario",
+      "description": "Camila puede leer y actualizar la información de tu inventario de propiedades para brindar mejores recomendaciones y compartir el link del mapa de tu proyecto a clientes interesados.",
+      "image": "/images/Feature-02-inventarios.png",
+      "imageWebp": "/images/Feature-02-inventarios.webp",
+      "imageAlt": "Inventario de propiedades organizado por bloque y estado.",
+      "width": 1000,
+      "height": 700
+    },
+    {
+      "title": "Recibe alertas sobre los principales eventos de conversión, en cualquier dispositivo.",
+      "description": "Camila te mantiene al tanto de lo que pasa en tus procesos de ventas. Desde leads calificados, visitas agendadas, recordatorios de tareas y mucho más.",
+      "image": "/images/Feature-03-notifications.png",
+      "imageWebp": "/images/Feature-03-notifications.webp",
+      "imageAlt": "Notificaciones de reservas y asignaciones de leads en Camila.",
+      "width": 1000,
+      "height": 700
+    },
+    {
+      "title": "Activación de protocolos.",
+      "description": "Con Camila puedes ahorrar tiempo y trabajar de manera más inteligente con nuestros protocolos para realizar seguimiento automático de leads, análisis de llamadas, informes diarios y mucho más.",
+      "image": "/images/Feature-04-protocolos.png",
+      "imageWebp": "/images/Feature-04-protocolos.webp",
+      "imageAlt": "Protocolos de seguimiento y calificación configurados en Camila.",
+      "width": 1000,
+      "height": 700
+    }
+  ]
+}

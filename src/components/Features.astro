@@ -1,0 +1,64 @@
+---
+interface FeatureItem {
+  title: string;
+  description: string;
+  image: string;
+  imageWebp: string;
+  imageAlt: string;
+  width: number;
+  height: number;
+}
+
+interface FeaturesCopy {
+  locale: "en" | "es";
+  label: string;
+  heading: {
+    lineOne: string;
+    lineTwoPrefix: string;
+    accent: string;
+  };
+  items: FeatureItem[];
+}
+
+interface Props {
+  data: FeaturesCopy;
+}
+
+const { data } = Astro.props;
+---
+
+<section id="capabilities" class="features-section" data-locale={data.locale} aria-labelledby="features-title">
+  <div class="features-inner">
+    <header class="features-header">
+      <p class="features-eyebrow">{data.label}</p>
+      <h2 id="features-title">
+        <span class="features-title-line">{data.heading.lineOne}</span>
+        <span class="features-title-line">
+          {data.heading.lineTwoPrefix}<span class="features-title-accent">{data.heading.accent}</span>
+        </span>
+      </h2>
+    </header>
+
+    <div class="features-grid">
+      {data.items.map((feature) => (
+        <article class="feature-card">
+          <div class="feature-card-copy">
+            <h3>{feature.title}</h3>
+            <p>{feature.description}</p>
+          </div>
+          <picture class="feature-card-media">
+            <source srcset={feature.imageWebp} type="image/webp" />
+            <img
+              src={feature.image}
+              alt={feature.imageAlt}
+              width={feature.width}
+              height={feature.height}
+              loading="lazy"
+              decoding="async"
+            />
+          </picture>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>

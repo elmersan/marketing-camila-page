@@ -1,0 +1,47 @@
+{
+  "locale": "en",
+  "label": "Features",
+  "heading": {
+    "lineOne": "“Everything Camila can do",
+    "lineTwoPrefix": "for your ",
+    "accent": "sales operation”"
+  },
+  "items": [
+    {
+      "title": "Focus on the leads most likely to buy",
+      "description": "Camila analyzes each lead profile and compares every response against your internal sales playbook. It can also run direct checks with RENIEC, SUNAT, and SUNARP to help your team qualify leads with more confidence.",
+      "image": "/images/Feature-01-leads.png",
+      "imageWebp": "/images/Feature-01-leads.webp",
+      "imageAlt": "Lead scoring table and contact details in Camila.",
+      "width": 702,
+      "height": 501
+    },
+    {
+      "title": "Keep your property inventory updated automatically",
+      "description": "Camila reads and updates your property inventory so your team can make better recommendations and share the right project map with interested buyers.",
+      "image": "/images/Feature-02-inventarios.png",
+      "imageWebp": "/images/Feature-02-inventarios.webp",
+      "imageAlt": "Property inventory organized by block and availability.",
+      "width": 1000,
+      "height": 700
+    },
+    {
+      "title": "Get notified about the moments that drive conversion",
+      "description": "Camila keeps your team up to date on what’s happening across the sales process, from qualified leads and scheduled visits to task reminders and more.",
+      "image": "/images/Feature-03-notifications.png",
+      "imageWebp": "/images/Feature-03-notifications.webp",
+      "imageAlt": "Reservation and lead-assignment notifications in Camila.",
+      "width": 1000,
+      "height": 700
+    },
+    {
+      "title": "Automate follow-up with smart sales workflows",
+      "description": "Camila helps your team save time and work more efficiently with automated lead follow-up, call analysis, daily reports, and more.",
+      "image": "/images/Feature-04-protocolos.png",
+      "imageWebp": "/images/Feature-04-protocolos.webp",
+      "imageAlt": "Automated follow-up and qualification workflows in Camila.",
+      "width": 1000,
+      "height": 700
+    }
+  ]
+}

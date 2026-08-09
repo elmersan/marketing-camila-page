@@ -1,0 +1,113 @@
+---
+interface HeroCopy {
+  locale: "en" | "es";
+  languageLabel: string;
+  languageName: string;
+  languageHref: string;
+  brandHref: string;
+  nav: {
+    capabilities: string;
+    integrations: string;
+    pricing: string;
+    createAccount: string;
+    signIn: string;
+  };
+  announcement: string;
+  headline: {
+    lineOne: string;
+    lineTwoPrefix: string;
+    accent: string;
+  };
+  description: string;
+  primaryCta: string;
+  secondaryCta: string;
+  location: string;
+  partnerLabel: string;
+  partnerAlt: string;
+}
+
+interface Props {
+  data: HeroCopy;
+}
+
+const { data } = Astro.props;
+---
+
+<section class="hero" data-locale={data.locale} aria-labelledby="hero-title">
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="brand-group">
+        <a class="brand-mark" href={data.brandHref} aria-label="BrandLift home">BRANDLIFT</a>
+        <details class="language-menu">
+          <summary class="language-switch" aria-label={`Open language menu. Current language: ${data.languageLabel}`} aria-haspopup="menu">
+            <span class="globe-icon" aria-hidden="true">
+              <img class="globe-outline" src="/icons/globe-vector.svg" alt="" />
+              <img class="globe-horizontal" src="/icons/globe-vector-1.svg" alt="" />
+              <img class="globe-meridian" src="/icons/globe-vector-2.svg" alt="" />
+            </span>
+            <span>{data.languageLabel}</span>
+          </summary>
+          <div class="language-options" role="menu">
+            <a class="language-option" href={data.languageHref} role="menuitem">{data.languageName}</a>
+          </div>
+        </details>
+      </div>
+
+      <nav class="desktop-nav" aria-label="Primary navigation">
+        <a href="#capabilities">{data.nav.capabilities}</a>
+        <a href="#integrations">{data.nav.integrations}</a>
+        <a href="#pricing">{data.nav.pricing}</a>
+      </nav>
+
+      <div class="header-actions">
+        <a class="header-link create-account" href="https://camila.brandlift.pe/signup">{data.nav.createAccount}</a>
+        <a class="button button-primary header-sign-in" href="https://camila.brandlift.pe/login">{data.nav.signIn}</a>
+      </div>
+    </div>
+  </header>
+
+  <div class="hero-stage">
+    <div class="hero-announcement" role="note">
+      <span>{data.announcement}</span>
+    </div>
+
+    <picture class="hero-image-frame" aria-hidden="true">
+      <source srcset="/images/camila-abstract-gradient-hero.webp" type="image/webp" />
+      <img
+        class="hero-image"
+        src="/images/camila-abstract-gradient-hero.png"
+        alt=""
+        width="1607"
+        height="979"
+        loading="eager"
+        decoding="async"
+        fetchpriority="high"
+      />
+    </picture>
+    <div class="hero-content">
+      <div class="hero-card">
+        <div class="hero-card-location">{data.location}</div>
+        <div class="hero-copy">
+          <h1 id="hero-title">
+            <span class="headline-line">{data.headline.lineOne}</span>
+            <span class="headline-line">
+              {data.headline.lineTwoPrefix}<span class="headline-accent">{data.headline.accent}</span>
+            </span>
+          </h1>
+          <p class="hero-description">{data.description}</p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="#early-access">
+              <span>{data.primaryCta}</span>
+            </a>
+            <a class="button button-secondary" href="https://wa.me/51968781139">{data.secondaryCta}</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-partner" aria-label={data.partnerLabel}>
+      <span class="hero-partner-label">{data.partnerLabel}</span>
+      <img src="/images/emprelatam-logo.png" alt={data.partnerAlt} width="180" height="36" loading="eager" decoding="async" />
+    </div>
+  </div>
+</section>
