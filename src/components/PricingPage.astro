@@ -1,0 +1,542 @@
+---
+interface Category {
+  name: string;
+  items: string[];
+}
+
+interface PlanPageCopy {
+  monthlyNote?: string;
+  annualNote?: string;
+  annualSavings?: string;
+  taxNote: string;
+  initialBilling?: "monthly" | "annual";
+  description?: string;
+  cta: string;
+}
+
+interface Plan {
+  id: string;
+  name: string;
+  tagline: string;
+  monthlyPrice: string;
+  annualPrice: string;
+  annualEquivalent: string;
+  features: string[];
+  categories: Category[];
+  cta: string;
+  ctaKind: "trial" | "sales";
+  highlighted?: boolean;
+  page: PlanPageCopy;
+}
+
+interface PricingCopy {
+  locale: "en" | "es";
+  label: string;
+  heading: string;
+  description: string;
+  billing: {
+    monthly: string;
+    annual: string;
+    save: string;
+    taxNote: string;
+  };
+  cards: Plan[];
+  fullPage: {
+    eyebrow: string;
+    heading: string;
+    headingPrefix: string;
+    headingAccent: string;
+    description: string;
+  };
+}
+
+interface Props {
+  data: PricingCopy;
+}
+
+const { data } = Astro.props;
+const salesHref = "https://cal.com/brandlift-ai/exploracion-agente-camila";
+const trialHref = "https://wa.me/51968781139";
+const pageTitle = `pricing-page-title-${data.locale}`;
+const planSelectorLabel = data.locale === "es" ? "Selecciona un plan" : "Select a plan";
+const monthUnit = data.locale === "es" ? "mes" : "month";
+const yearUnit = data.locale === "es" ? "año" : "year";
+const billingSwitchLabel = data.locale === "es" ? "Cambiar a facturación anual" : "Switch to annual billing";
+const comparisonLabel = data.locale === "es" ? "Comparación de planes" : "Plan comparison";
+---
+
+<section class="pricing-figma-page" id="pricing" data-locale={data.locale} aria-labelledby={pageTitle}>
+  <div class="pricing-figma-inner">
+    <header class="pricing-figma-intro">
+      <p class="pricing-figma-eyebrow">{data.fullPage.eyebrow}</p>
+      <h1 id={pageTitle}>
+        <span>{data.fullPage.headingPrefix}</span><span class="pricing-figma-heading-accent">{data.fullPage.headingAccent}</span>
+      </h1>
+      <p class="pricing-figma-description">{data.fullPage.description}</p>
+    </header>
+
+    <div class="pricing-mobile-selector">
+      <label for={`pricing-plan-selector-${data.locale}`}>{planSelectorLabel}</label>
+      <select id={`pricing-plan-selector-${data.locale}`} data-pricing-plan-selector>
+        {data.cards.map((plan) => <option value={plan.id}>{plan.name}</option>)}
+      </select>
+    </div>
+
+    <div class="pricing-figma-comparison" role="table" aria-label={comparisonLabel}>
+      <div class="pricing-figma-plan-grid" role="row">
+        {data.cards.map((plan) => (
+          <article class="pricing-figma-plan-column" data-pricing-plan-column={plan.id} role="columnheader">
+            <h2>{plan.name}</h2>
+            {plan.id === "enterprise" ? (
+              <div class="pricing-figma-enterprise-price">
+                <strong>{plan.annualPrice}</strong>
+                <span>{plan.annualEquivalent}</span>
+              </div>
+            ) : (
+              <div class="pricing-figma-price" aria-label={`${plan.name} pricing`}>
+                <span class="pricing-figma-price-value pricing-figma-monthly-value">{plan.monthlyPrice}</span>
+                <span class="pricing-figma-price-value pricing-figma-annual-value">{plan.annualPrice}</span>
+                <span class="pricing-figma-price-unit pricing-figma-monthly-value">/ {monthUnit}</span>
+                <span class="pricing-figma-price-unit pricing-figma-annual-value">/ {yearUnit}</span>
+              </div>
+            )}
+
+            {plan.id === "enterprise" ? (
+              <p class="pricing-figma-plan-description">{plan.page.description}</p>
+            ) : (
+              <>
+                <input
+                  class="pricing-figma-billing-toggle"
+                  id={`pricing-billing-${data.locale}-${plan.id}`}
+                  type="checkbox"
+                  checked={plan.page.initialBilling === "annual"}
+                />
+                <label
+                  class="pricing-figma-switch"
+                  for={`pricing-billing-${data.locale}-${plan.id}`}
+                  aria-label={billingSwitchLabel}
+                ></label>
+                <div class="pricing-figma-billing-copy">
+                  <span class="pricing-figma-monthly-copy">{plan.page.monthlyNote}<br />{plan.page.taxNote}</span>
+                  <span class="pricing-figma-annual-copy">{plan.page.annualNote}<br />{plan.page.annualSavings}<br />{plan.page.taxNote}</span>
+                </div>
+              </>
+            )}
+
+            <a class:list={["pricing-figma-cta", { "pricing-figma-cta-dark": plan.id === "enterprise" }]} href={plan.ctaKind === "sales" ? salesHref : trialHref}>
+              {plan.page.cta}
+            </a>
+          </article>
+        ))}
+      </div>
+
+      {data.cards[0].categories.map((category, categoryIndex) => (
+        <section class="pricing-figma-category" role="rowgroup">
+          <h2>{category.name}</h2>
+          <div class="pricing-figma-category-grid" role="row">
+            {data.cards.map((plan) => (
+              <div
+                class:list={["pricing-figma-category-column", { "pricing-figma-enterprise-column": plan.id === "enterprise" }]}
+                data-pricing-plan-column={plan.id}
+                role="cell"
+              >
+                <ul>
+                  {plan.categories[categoryIndex]?.items.map((item) => <li>{item}</li>)}
+                </ul>
+              </div>
+            ))}
+          </div>
+        </section>
+      ))}
+    </div>
+  </div>
+</section>
+
+<script>
+  const initializePricingPlanSelector = () => {
+    const selector = document.querySelector("[data-pricing-plan-selector]");
+    const columns = [...document.querySelectorAll("[data-pricing-plan-column]")];
+
+    if (!(selector instanceof HTMLSelectElement)) return;
+
+    const updatePlanVisibility = () => {
+      const isMobile = window.matchMedia("(max-width: 767px)").matches;
+
+      columns.forEach((column) => {
+        column.hidden = isMobile && column.dataset.pricingPlanColumn !== selector.value;
+      });
+    };
+
+    selector.addEventListener("change", updatePlanVisibility);
+    window.addEventListener("resize", updatePlanVisibility);
+    updatePlanVisibility();
+  };
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initializePricingPlanSelector, { once: true });
+  } else {
+    initializePricingPlanSelector();
+  }
+</script>
+
+<style>
+  .pricing-figma-page {
+    --pricing-border: #e9e2e9;
+    --pricing-muted: rgb(31 28 34 / 64%);
+    --pricing-purple: #7255da;
+    padding: 58px 24px 96px;
+    background: #fafafa;
+    color: var(--ink);
+  }
+
+  .pricing-figma-inner {
+    width: min(100%, 1028px);
+    margin: 0 auto;
+  }
+
+  .pricing-figma-intro {
+    width: min(100%, 394px);
+    margin-left: clamp(0px, 3.2vw, 33px);
+  }
+
+  .pricing-figma-eyebrow {
+    margin: 0;
+    color: var(--ink);
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 1.2;
+    text-transform: uppercase;
+  }
+
+  .pricing-figma-intro h1 {
+    margin: 14px 0 0;
+    font-family: "Funnel Display", Arial, sans-serif;
+    font-size: clamp(2rem, 3.3vw, 2.5rem);
+    font-weight: 500;
+    letter-spacing: -0.045em;
+    line-height: 1.08;
+  }
+
+  .pricing-figma-heading-accent {
+    color: var(--pricing-purple);
+  }
+
+  .pricing-figma-description {
+    margin: 18px 0 0;
+    color: var(--pricing-muted);
+    font-size: var(--font-size-body);
+    line-height: 1.55;
+  }
+
+  .pricing-mobile-selector {
+    display: none;
+  }
+
+  .pricing-figma-comparison {
+    margin-top: 64px;
+    overflow: hidden;
+    border: 1px solid var(--pricing-border);
+    border-radius: 12px;
+    background: #fff;
+  }
+
+  .pricing-figma-plan-grid,
+  .pricing-figma-category-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .pricing-figma-plan-column {
+    min-width: 0;
+    min-height: 234px;
+    padding: 27px 38px 22px;
+  }
+
+  .pricing-figma-plan-column + .pricing-figma-plan-column,
+  .pricing-figma-category-column + .pricing-figma-category-column {
+    border-left: 1px solid var(--pricing-border);
+  }
+
+  .pricing-figma-plan-column h2 {
+    margin: 0;
+    font-family: "Funnel Display", Arial, sans-serif;
+    font-size: 18px;
+    font-weight: 500;
+    letter-spacing: -0.025em;
+    line-height: 1.1;
+  }
+
+  .pricing-figma-price,
+  .pricing-figma-enterprise-price {
+    display: flex;
+    align-items: baseline;
+    gap: 5px;
+    margin-top: 7px;
+  }
+
+  .pricing-figma-price-value,
+  .pricing-figma-enterprise-price strong {
+    font-family: "Funnel Display", Arial, sans-serif;
+    font-size: 17px;
+    font-weight: 500;
+    letter-spacing: -0.04em;
+    line-height: 1;
+  }
+
+  .pricing-figma-price-unit,
+  .pricing-figma-enterprise-price span {
+    color: var(--ink);
+    font-size: 10px;
+    line-height: 1;
+  }
+
+  .pricing-figma-enterprise-price {
+    align-items: center;
+    gap: 7px;
+  }
+
+  .pricing-figma-enterprise-price strong {
+    font-size: 22px;
+  }
+
+  .pricing-figma-annual-value,
+  .pricing-figma-annual-copy {
+    display: none;
+  }
+
+  .pricing-figma-billing-toggle {
+    position: absolute;
+    inline-size: 1px;
+    block-size: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+
+  .pricing-figma-switch {
+    display: block;
+    width: 36px;
+    height: 20px;
+    margin-top: 9px;
+    padding: 2px;
+    border-radius: 99px;
+    background: #ded9e0;
+    cursor: pointer;
+    transition: background 160ms ease;
+  }
+
+  .pricing-figma-switch::after {
+    display: block;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: #fff;
+    box-shadow: 0 1px 2px rgb(31 28 34 / 18%);
+    content: "";
+    transition: transform 160ms ease;
+  }
+
+  .pricing-figma-billing-toggle:checked + .pricing-figma-switch {
+    background: var(--pricing-purple);
+  }
+
+  .pricing-figma-billing-toggle:checked + .pricing-figma-switch::after {
+    transform: translateX(16px);
+  }
+
+  .pricing-figma-billing-toggle:focus-visible + .pricing-figma-switch {
+    outline: 2px solid var(--pricing-purple);
+    outline-offset: 3px;
+  }
+
+  .pricing-figma-plan-column:has(.pricing-figma-billing-toggle:checked) .pricing-figma-monthly-value,
+  .pricing-figma-plan-column:has(.pricing-figma-billing-toggle:checked) .pricing-figma-monthly-copy {
+    display: none;
+  }
+
+  .pricing-figma-plan-column:has(.pricing-figma-billing-toggle:checked) .pricing-figma-annual-value,
+  .pricing-figma-plan-column:has(.pricing-figma-billing-toggle:checked) .pricing-figma-annual-copy {
+    display: inline;
+  }
+
+  .pricing-figma-billing-copy,
+  .pricing-figma-plan-description {
+    min-height: 42px;
+    margin: 9px 0 0;
+    color: var(--pricing-muted);
+    font-size: 12px;
+    line-height: 1.45;
+  }
+
+  .pricing-figma-plan-description {
+    max-width: 240px;
+    min-height: 76px;
+    margin-top: 17px;
+    font-size: var(--font-size-body);
+    line-height: 1.55;
+  }
+
+  .pricing-figma-cta {
+    display: flex;
+    min-height: 25px;
+    align-items: center;
+    justify-content: center;
+    margin-top: 12px;
+    padding: 5px 12px;
+    border-radius: 99px;
+    background: var(--pricing-purple);
+    color: #fff;
+    font-size: var(--font-size-button);
+    font-weight: 600;
+    line-height: 1.1;
+    text-align: center;
+    text-decoration: none;
+    transition: background 160ms ease, transform 160ms ease;
+  }
+
+  .pricing-figma-cta:hover {
+    background: #6045c6;
+    transform: translateY(-1px);
+  }
+
+  .pricing-figma-cta-dark {
+    background: var(--ink);
+  }
+
+  .pricing-figma-cta-dark:hover {
+    background: #312c38;
+  }
+
+  .pricing-figma-category > h2 {
+    margin: 0;
+    padding: 11px 20px;
+    border-top: 1px solid var(--pricing-border);
+    border-bottom: 1px solid var(--pricing-border);
+    font-size: var(--font-size-h3);
+    font-weight: 600;
+    line-height: 1.2;
+    text-align: center;
+  }
+
+  .pricing-figma-category-column {
+    min-height: 260px;
+    padding: 26px 38px 30px;
+  }
+
+  .pricing-figma-category-column ul {
+    display: grid;
+    gap: 27px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .pricing-figma-category-column li {
+    position: relative;
+    padding-left: 10px;
+    color: var(--pricing-muted);
+    font-size: var(--font-size-body);
+    line-height: 1.55;
+  }
+
+  .pricing-figma-category-column li::before {
+    position: absolute;
+    top: 0.55em;
+    left: 0;
+    width: 3px;
+    height: 3px;
+    border-radius: 50%;
+    background: var(--pricing-purple);
+    content: "";
+  }
+
+  .pricing-figma-enterprise-column li {
+    padding-left: 0;
+  }
+
+  .pricing-figma-enterprise-column li::before {
+    display: none;
+  }
+
+  .pricing-figma-plan-column[hidden],
+  .pricing-figma-category-column[hidden] {
+    display: none;
+  }
+
+  @media (max-width: 767px) {
+    .pricing-figma-page {
+      padding: 42px 16px 72px;
+    }
+
+    .pricing-figma-intro {
+      width: 100%;
+      margin-left: 0;
+    }
+
+    .pricing-figma-intro h1 {
+      font-size: clamp(2rem, 11vw, 2.5rem);
+    }
+
+    .pricing-mobile-selector {
+      display: grid;
+      gap: 8px;
+      margin-top: 28px;
+    }
+
+    .pricing-mobile-selector label {
+      color: var(--pricing-muted);
+      font-size: 11px;
+      font-weight: 600;
+    }
+
+    .pricing-mobile-selector select {
+      width: 100%;
+      min-height: 42px;
+      padding: 0 12px;
+      border: 1px solid var(--pricing-border);
+      border-radius: 8px;
+      background: #fff;
+      color: var(--ink);
+      font: inherit;
+      font-size: 13px;
+    }
+
+    .pricing-figma-comparison {
+      margin-top: 24px;
+    }
+
+    .pricing-figma-plan-grid,
+    .pricing-figma-category-grid {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    .pricing-figma-plan-column,
+    .pricing-figma-category-column {
+      padding-right: 24px;
+      padding-left: 24px;
+    }
+
+    .pricing-figma-plan-column {
+      min-height: 230px;
+    }
+
+    .pricing-figma-plan-column + .pricing-figma-plan-column,
+    .pricing-figma-category-column + .pricing-figma-category-column {
+      border-top: 1px solid var(--pricing-border);
+      border-left: 0;
+    }
+
+    .pricing-figma-category-column {
+      min-height: auto;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .pricing-figma-switch,
+    .pricing-figma-switch::after,
+    .pricing-figma-cta {
+      transition: none;
+    }
+  }
+</style>

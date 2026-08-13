@@ -1,0 +1,232 @@
+---
+interface MissionLine {
+  prefix: string;
+  accent?: string;
+  suffix?: string;
+}
+
+interface MissionCopy {
+  locale: "en" | "es";
+  label: string;
+  heading: MissionLine[];
+  cta: string;
+  ctaHref: string;
+}
+
+interface Props {
+  data: MissionCopy;
+}
+
+const { data } = Astro.props;
+const columns = 32;
+const rows = 20;
+const cellSize = 44;
+const cells = Array.from({ length: columns * rows }, (_, index) => ({
+  x: (index % columns) * cellSize,
+  y: Math.floor(index / columns) * cellSize,
+}));
+---
+
+<section id="mission" class="mission-section" data-locale={data.locale} aria-labelledby="mission-title">
+  <svg
+    class="mission-grid"
+    viewBox={`0 0 ${columns * cellSize} ${rows * cellSize}`}
+    preserveAspectRatio="xMidYMid slice"
+    aria-hidden="true"
+  >
+    {cells.map((cell) => (
+      <rect
+        class="mission-grid-cell"
+        x={cell.x}
+        y={cell.y}
+        width={cellSize}
+        height={cellSize}
+      />
+    ))}
+  </svg>
+
+  <div class="mission-card">
+    <p class="mission-eyebrow">{data.label}</p>
+    <h2 id="mission-title">
+      {data.heading.map((line) => (
+        <span class="mission-heading-line">
+          {line.prefix}
+          {line.accent && <span class="mission-heading-accent">{line.accent}</span>}
+          {line.suffix}
+        </span>
+      ))}
+    </h2>
+    <a class="button button-primary mission-cta" href={data.ctaHref}>{data.cta}</a>
+  </div>
+</section>
+
+<style>
+  .mission-section {
+    position: relative;
+    isolation: isolate;
+    display: grid;
+    min-height: max(900px, 100svh);
+    place-items: center;
+    overflow: hidden;
+    padding: 120px 24px;
+    background:
+      radial-gradient(circle at 76% 72%, rgb(114 85 218 / 9%), transparent 38%),
+      radial-gradient(circle at 18% 20%, rgb(220 210 219 / 18%), transparent 36%),
+      #f7f7f7;
+    color: var(--ink);
+  }
+
+  .mission-grid {
+    position: absolute;
+    z-index: 0;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.78;
+    -webkit-mask-image: radial-gradient(ellipse 82% 76% at center, #000 24%, rgb(0 0 0 / 82%) 66%, transparent 100%);
+    mask-image: radial-gradient(ellipse 82% 76% at center, #000 24%, rgb(0 0 0 / 82%) 66%, transparent 100%);
+  }
+
+  .mission-grid-cell {
+    fill: transparent;
+    stroke: rgb(220 210 219 / 48%);
+    stroke-width: 1;
+    transition: fill 700ms ease, stroke 700ms ease;
+    vector-effect: non-scaling-stroke;
+  }
+
+  .mission-grid-cell:hover {
+    fill: rgb(114 85 218 / 18%);
+    stroke: rgb(114 85 218 / 48%);
+    transition-duration: 100ms;
+  }
+
+  .mission-card {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    width: min(100%, 1120px);
+    min-height: 460px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 52px 56px;
+    border: 1px solid rgb(220 210 219 / 85%);
+    border-radius: 18px;
+    background: rgb(254 252 251 / 88%);
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+    text-align: center;
+  }
+
+  .mission-eyebrow {
+    margin: 0;
+    padding: 6px 18px;
+    border-radius: 99px;
+    background: rgb(254 252 251 / 74%);
+    color: rgb(31 28 34 / 82%);
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.18px;
+    line-height: 1;
+    text-transform: uppercase;
+  }
+
+  .mission-card h2 {
+    max-width: 980px;
+    margin: 38px auto 0;
+    font-family: "Funnel Display", Arial, sans-serif;
+    font-size: clamp(2rem, 2.55vw, 2.375rem);
+    font-weight: 500;
+    letter-spacing: 0;
+    line-height: 1.16;
+  }
+
+  .mission-heading-line {
+    display: block;
+  }
+
+  .mission-heading-accent {
+    color: var(--primary-purple);
+  }
+
+  .mission-cta {
+    min-height: 36px;
+    margin-top: 48px;
+    padding-inline: 20px;
+  }
+
+  @media (max-width: 1100px) {
+    .mission-section {
+      min-height: max(760px, 100svh);
+      padding: 96px 32px;
+    }
+
+    .mission-card {
+      min-height: 440px;
+      padding: 48px 36px;
+    }
+
+    .mission-card h2 {
+      max-width: 820px;
+      margin-top: 38px;
+    }
+
+    .mission-cta {
+      margin-top: 48px;
+    }
+  }
+
+  @media (max-width: 700px) {
+    .mission-section {
+      min-height: max(720px, 100svh);
+      padding: 72px 16px;
+    }
+
+    .mission-grid {
+      opacity: 0.62;
+      -webkit-mask-image: radial-gradient(ellipse 110% 78% at center, #000 20%, rgb(0 0 0 / 76%) 68%, transparent 100%);
+      mask-image: radial-gradient(ellipse 110% 78% at center, #000 20%, rgb(0 0 0 / 76%) 68%, transparent 100%);
+    }
+
+    .mission-card {
+      min-height: 500px;
+      padding: 40px 20px;
+      border-radius: 16px;
+    }
+
+    .mission-eyebrow {
+      padding-inline: 14px;
+      font-size: 11px;
+    }
+
+    .mission-card h2 {
+      margin-top: 32px;
+      line-height: 1.2;
+    }
+
+    .mission-heading-line {
+      display: inline;
+    }
+
+    .mission-heading-line::after {
+      content: " ";
+    }
+
+    .mission-cta {
+      margin-top: 42px;
+    }
+  }
+
+  @media (hover: none) {
+    .mission-grid {
+      pointer-events: none;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .mission-grid-cell {
+      transition: none;
+    }
+  }
+</style>

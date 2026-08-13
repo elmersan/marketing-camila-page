@@ -1,0 +1,58 @@
+---
+interface HeaderCopy {
+  locale: "en" | "es";
+  languageLabel: string;
+  languageName: string;
+  languageHref: string;
+  brandHref: string;
+  nav: {
+    capabilities: string;
+    integrations: string;
+    pricing: string;
+    createAccount: string;
+    signIn: string;
+  };
+}
+
+interface Props {
+  data: HeaderCopy;
+  homeHref?: string;
+  pricingHref?: string;
+}
+
+const { data, homeHref = "", pricingHref = "#pricing" } = Astro.props;
+const capabilitiesHref = `${homeHref}#capabilities`;
+const integrationsHref = `${homeHref}#integrations`;
+---
+
+<header class="site-header">
+  <div class="header-inner">
+    <div class="brand-group">
+      <a class="brand-mark" href={data.brandHref} aria-label="BrandLift home">BRANDLIFT</a>
+      <details class="language-menu">
+        <summary class="language-switch" aria-label={`Open language menu. Current language: ${data.languageLabel}`} aria-haspopup="menu">
+          <span class="globe-icon" aria-hidden="true">
+            <img class="globe-outline" src="/icons/globe-vector.svg" alt="" />
+            <img class="globe-horizontal" src="/icons/globe-vector-1.svg" alt="" />
+            <img class="globe-meridian" src="/icons/globe-vector-2.svg" alt="" />
+          </span>
+          <span>{data.languageLabel}</span>
+        </summary>
+        <div class="language-options" role="menu">
+          <a class="language-option" href={data.languageHref} role="menuitem">{data.languageName}</a>
+        </div>
+      </details>
+    </div>
+
+    <nav class="desktop-nav" aria-label="Primary navigation">
+      <a href={capabilitiesHref}>{data.nav.capabilities}</a>
+      <a href={integrationsHref}>{data.nav.integrations}</a>
+      <a href={pricingHref}>{data.nav.pricing}</a>
+    </nav>
+
+    <div class="header-actions">
+      <a class="header-link create-account" href="https://camila.brandlift.pe/signup">{data.nav.createAccount}</a>
+      <a class="button button-primary header-sign-in" href="https://camila.brandlift.pe/login">{data.nav.signIn}</a>
+    </div>
+  </div>
+</header>

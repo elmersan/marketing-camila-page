@@ -1,0 +1,40 @@
+---
+interface FooterCopy {
+  locale: "en" | "es";
+  description: string;
+  sales: string;
+  copyright: string;
+  links: {
+    capabilities: string;
+    pricing: string;
+    signIn: string;
+  };
+}
+
+interface Props {
+  data: FooterCopy;
+  homeHref?: string;
+}
+
+const { data, homeHref = "" } = Astro.props;
+const salesHref = "https://wa.me/51968781139";
+---
+
+<footer class="site-footer">
+  <div class="site-footer-inner">
+    <div class="site-footer-brand">
+      <a class="site-footer-mark" href={homeHref || "/"}>BRANDLIFT</a>
+      <p>{data.description}</p>
+    </div>
+    <nav class="site-footer-nav" aria-label={data.locale === "es" ? "Navegación del pie de página" : "Footer navigation"}>
+      <a href={`${homeHref}#capabilities`}>{data.links.capabilities}</a>
+      <a href={`${homeHref}#pricing`}>{data.links.pricing}</a>
+      <a href={data.locale === "es" ? "https://camila.brandlift.pe/login" : "https://camila.brandlift.pe/login"}>{data.links.signIn}</a>
+      <a href={salesHref}>{data.sales}</a>
+    </nav>
+  </div>
+  <div class="site-footer-bottom">
+    <span>{data.copyright}</span>
+    <span>{data.locale === "es" ? "Hecho en Chiclayo, Perú" : "Made in Chiclayo, Peru"}</span>
+  </div>
+</footer>

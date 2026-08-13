@@ -1,0 +1,133 @@
+{
+  "locale": "es",
+  "meta": {
+    "title": "Planes y precios | Camila",
+    "description": "Descubre el plan de Camila que mejor se adapta a las necesidades de tu inmobiliaria. Precios en USD, sin incluir IGV."
+  },
+  "label": "Planes y precios",
+  "heading": "Contrata hoy Camila y eleva tu operación comercial",
+  "description": "Contamos con 3 planes para acompañar la etapa y las necesidades de tu organización. Compara sus beneficios y encuentra el punto de partida adecuado.",
+  "billing": {
+    "monthly": "Mensual",
+    "annual": "Anual",
+    "save": "-25% dsct",
+    "taxNote": "Precios en USD. No incluyen IGV."
+  },
+  "cards": [
+    {
+      "id": "pro",
+      "name": "Pro",
+      "tagline": "Para equipos locales y pequeños que quieren crecer más rápido con IA.",
+      "monthlyPrice": "$60",
+      "annualPrice": "$540",
+      "annualEquivalent": "$45 / mes",
+      "features": [
+        "Hasta 2 proyectos y 100 propiedades",
+        "Hasta 1,000 leads calificados al mes",
+        "Hasta 2 pipelines de ventas",
+        "USD 20 en créditos de IA al mes"
+      ],
+      "categories": [
+        { "name": "Inventario de proyectos", "items": ["Crea y administra hasta 2 proyectos en simultáneo con 100 propiedades cada una.", "Sube hasta 20 fotos a la galería de cada proyecto.", "Links públicos para compartir el mapa de tu proyecto."] },
+        { "name": "Leads", "items": ["Hasta 1,000 leads calificados al mes", "Verificación de identidad con RENIEC", "Información de contacto y actividad del lead", "Generación de lead score (próximamente)"] },
+        { "name": "Pipeline de ventas", "items": ["Hasta 2 pipelines de ventas", "Notificaciones móviles y de escritorio para eventos de conversión"] },
+        { "name": "Flujos de IA", "items": ["Mensajes de seguimiento con plantillas de WhatsApp", "Handoff del proceso comercial", "Creación y actualización de negocios"] },
+        { "name": "Reportes", "items": ["Reportes diarios, semanales y mensuales (próximamente)", "Reporte de desempeño por fases y propiedades (próximamente)"] },
+        { "name": "Integraciones", "items": ["1 número de WhatsApp Business API"] },
+        { "name": "Créditos de IA", "items": ["Incluye USD 20 en créditos de IA al mes", "Compra créditos adicionales desde la app desde USD 10"] },
+        { "name": "App móvil", "items": ["Aplicación web progresiva descargable"] },
+        { "name": "Onboarding", "items": ["Sesión gratuita de onboarding con un experto de producto"] }
+      ],
+      "cta": "Solicitar 30 días gratis",
+      "ctaKind": "trial",
+      "page": {
+        "monthlyNote": "Cobro mensual en USD",
+        "annualNote": "Cobro anual en USD",
+        "annualSavings": "Ahorras $180 dólares",
+        "taxNote": "No incluye IGV, ni dsct.",
+        "initialBilling": "monthly",
+        "cta": "Obtén 30 días gratis"
+      }
+    },
+    {
+      "id": "business",
+      "name": "Business",
+      "tagline": "Para empresas que buscan aumentar la velocidad de ventas en distintos proyectos.",
+      "monthlyPrice": "$699",
+      "annualPrice": "$6,291",
+      "annualEquivalent": "$524.25 / mes",
+      "features": [
+        "Hasta 4 proyectos y 600 propiedades",
+        "Hasta 5,000 leads calificados al mes",
+        "Hasta 5 pipelines de ventas",
+        "USD 60 en créditos de IA al mes"
+      ],
+      "categories": [
+        { "name": "Inventario de proyectos", "items": ["Crea y administra hasta 4 proyectos en simultáneo con 600 propiedades cada una.", "Fotos ilimitadas para todos tus proyectos y propiedades.", "Links públicos para compartir el mapa de tu proyecto.", "Establecimiento de metas y KPI’s para cada proyecto.", "Agrega a nuevos miembros y configura roles para cada proyecto."] },
+        { "name": "Leads", "items": ["Hasta 5,000 leads calificados al mes", "Verificación de identidad con RENIEC", "Información de contacto y actividad del lead", "Generación de sales playbook con IA (próximamente)"] },
+        { "name": "Pipeline de ventas", "items": ["Hasta 5 pipelines de ventas", "Seguimiento y notificaciones de eventos de conversión"] },
+        { "name": "Flujos de IA", "items": ["Mensajes de seguimiento con plantillas de WhatsApp", "Handoff del proceso comercial", "Creación y actualización de negocios", "Cobro de reservas de propiedades (próximamente)"] },
+        { "name": "Reportes", "items": ["Reportes diarios, semanales y mensuales (próximamente)", "Reporte de desempeño por fases y propiedades (próximamente)"] },
+        { "name": "Integraciones", "items": ["1 número de WhatsApp Business API", "Añadir a Camila en grupos de WhatsApp (próximamente)", "Llamadas MCP ilimitadas para Claude, ChatGPT y otros", "Granola para generar notas con IA (próximamente)", "Meta Ads Conversion API"] },
+        { "name": "Créditos de IA", "items": ["Incluye USD 60 en créditos de IA al mes", "Compra créditos adicionales desde la app desde USD 10", "Configura un límite de gasto mensual"] },
+        { "name": "App móvil", "items": ["Aplicación web progresiva descargable"] },
+        { "name": "Onboarding", "items": ["Soporte técnico dedicado y hasta 2 sesiones de capacitación gratuitas"] }
+      ],
+      "cta": "Solicitar 30 días gratis",
+      "ctaKind": "trial",
+      "highlighted": true,
+      "page": {
+        "monthlyNote": "Cobro mensual en USD",
+        "annualNote": "Cobro anual en USD",
+        "annualSavings": "Ahorras $2,097 dólares",
+        "taxNote": "No incluye IGV, ni dsct.",
+        "initialBilling": "annual",
+        "cta": "Obtén 30 días gratis"
+      }
+    },
+    {
+      "id": "enterprise",
+      "name": "Enterprise",
+      "tagline": "Para marcas establecidas que no quieren quedarse atrás en la revolución de la IA.",
+      "monthlyPrice": "A medida",
+      "annualPrice": "A medida",
+      "annualEquivalent": "Contrato anual",
+      "features": [
+        "Proyectos y propiedades ilimitados",
+        "Volumen de leads adaptado a tu operación",
+        "Integraciones y créditos definidos contigo",
+        "Soporte y capacitación para todo tu equipo"
+      ],
+      "categories": [
+        { "name": "Inventario de proyectos", "items": ["Proyectos y propiedades de acuerdo a las necesidades de tu organización", "Fotos ilimitadas para todos tus proyectos y propiedades.", "Links público con dominio personalizado para compartir los mapas de tus proyectos", "Establecimiento de metas y KPI’s", "Agrega a nuevos miembros y configura roles para cada proyecto."] },
+        { "name": "Leads", "items": ["Hasta 10,000 leads calificados al mes como referencia", "Verificación con RENIEC y otros proveedores financieros", "Información de contacto y actividad del lead", "Generación de sales playbook con IA"] },
+        { "name": "Pipeline de ventas", "items": ["Hasta 20 pipelines de ventas como referencia", "Seguimiento y notificaciones de eventos de conversión"] },
+        { "name": "Flujos de IA", "items": ["Mensajes de seguimiento con plantillas de WhatsApp", "Handoff del proceso comercial", "Creación y actualización de negocios", "Cobro de reservas de propiedades"] },
+        { "name": "Reportes", "items": ["Reportes diarios, semanales y mensuales", "Reporte de desempeño por fases y propiedades"] },
+        { "name": "Integraciones", "items": ["Números de WhatsApp Business API según el tamaño del equipo", "Llamadas MCP ilimitadas para Claude, ChatGPT y otros", "Granola para generar notas con IA", "Meta Ads Conversion API"] },
+        { "name": "Créditos de IA", "items": ["Uso de créditos incluido en el contrato anual", "Límites y condiciones de uso definidos según la operación"] },
+        { "name": "App móvil", "items": ["Aplicación web progresiva descargable"] },
+        { "name": "Onboarding", "items": ["Soporte técnico dedicado y capacitaciones para todo tu equipo"] }
+      ],
+      "cta": "Agendar llamada de descubrimiento",
+      "ctaKind": "sales",
+      "page": {
+        "taxNote": "No incluye IGV, ni dsct.",
+        "description": "Para este plan se require solicitar una cotización.",
+        "cta": "Conversar con ventas"
+      }
+    }
+  ],
+  "fullPage": {
+    "eyebrow": "planes de suscripción",
+    "heading": "Evalúa nuestros planes disponibles.",
+    "headingPrefix": "Evalúa nuestros planes",
+    "headingAccent": " disponibles.",
+    "description": "Explora las diferentes funciones y beneficios que incluye cada plan. Ante cualquier duda o consulta sobre nuestros planes, puedes escribirnos directamente por correo hann@brandlift.pe.",
+    "comparisonHeading": "Compara los planes",
+    "comparisonDescription": "Las capacidades marcadas como “próximamente” están en desarrollo y no deben interpretarse como disponibles hoy.",
+    "trialNote": "Los planes Pro y Business incluyen una prueba gratuita de 30 días. Enterprise se contrata únicamente con facturación anual y no incluye prueba gratuita.",
+    "upgradeNote": "Cuando necesites más proyectos, pipelines, leads o usuarios, solicita una actualización de plan.",
+    "creditNote": "Puedes comprar créditos de IA adicionales desde la app con tarjeta. La compra mínima es de USD 10."
+  }
+}

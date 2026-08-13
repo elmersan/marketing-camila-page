@@ -1,0 +1,532 @@
+---
+interface Category {
+  name: string;
+  items: string[];
+}
+
+interface Plan {
+  id: string;
+  name: string;
+  tagline: string;
+  monthlyPrice: string;
+  annualPrice: string;
+  annualEquivalent: string;
+  features: string[];
+  categories: Category[];
+  cta: string;
+  ctaKind: "trial" | "sales";
+  highlighted?: boolean;
+}
+
+interface PricingCopy {
+  locale: "en" | "es";
+  label: string;
+  heading: string;
+  description: string;
+  billing: {
+    monthly: string;
+    annual: string;
+    save: string;
+    taxNote: string;
+  };
+  cards: Plan[];
+  fullPage: {
+    eyebrow: string;
+    heading: string;
+    description: string;
+    comparisonHeading: string;
+    comparisonDescription: string;
+    trialNote: string;
+    upgradeNote: string;
+    creditNote: string;
+  };
+}
+
+interface Props {
+  data: PricingCopy;
+  fullPage?: boolean;
+}
+
+const { data, fullPage = false } = Astro.props;
+const salesHref = "https://cal.com/brandlift-ai/exploracion-agente-camila";
+const trialHref = "https://wa.me/51968781139";
+const detailHref = data.locale === "es" ? "/planes-de-suscripcion/" : "/en/subscription-plans/";
+const billingName = `billing-${data.locale}-${fullPage ? "page" : "section"}`;
+---
+
+<section id="pricing" class:list={["pricing-section", { "pricing-page-section": fullPage }]} data-locale={data.locale} aria-labelledby={fullPage ? "pricing-page-title" : "pricing-title"}>
+  <div class="pricing-inner">
+    {fullPage && <p class="pricing-eyebrow">{data.fullPage.eyebrow}</p>}
+    <header class="pricing-header">
+      {!fullPage && <p class="pricing-eyebrow">{data.label}</p>}
+      <h1 class:list={[{ "pricing-page-title": fullPage }]} id={fullPage ? "pricing-page-title" : "pricing-title"}>{fullPage ? data.fullPage.heading : data.heading}</h1>
+      <p class="pricing-intro">{fullPage ? data.fullPage.description : data.description}</p>
+    </header>
+
+    <div class="pricing-shell">
+      <input class="billing-input billing-monthly" id={`${billingName}-monthly`} name={billingName} type="radio" checked aria-label={data.billing.monthly} />
+      <input class="billing-input billing-annual" id={`${billingName}-annual`} name={billingName} type="radio" aria-label={data.billing.annual} />
+      <div class="billing-controls" aria-label={data.locale === "es" ? "Frecuencia de facturación" : "Billing frequency"}>
+        <label for={`${billingName}-monthly`}>
+          <span class="billing-label-text">{data.billing.monthly}</span>
+        </label>
+        <label for={`${billingName}-annual`}>
+          <span class="billing-label-text">{data.billing.annual}</span>
+          <span class="billing-save">{data.billing.save}</span>
+        </label>
+      </div>
+
+      <div class="pricing-cards">
+        {data.cards.map((plan) => (
+          <article class:list={["pricing-card", { "pricing-card-highlighted": plan.highlighted, "pricing-card-enterprise": plan.id === "enterprise" }]}>
+            {plan.highlighted && <p class="pricing-card-badge">{data.locale === "es" ? "Más elegido" : "Most popular"}</p>}
+            <div class="pricing-card-top">
+              <h2>{plan.name}</h2>
+              <p class="pricing-tagline">{plan.tagline}</p>
+              <div class="pricing-price" aria-label={`${plan.name} pricing`}>
+                {plan.id === "enterprise" ? (
+                  <>
+                    <strong>{plan.annualPrice}</strong>
+                    <span>{plan.annualEquivalent}</span>
+                  </>
+                ) : (
+                  <>
+                    <strong class="price-monthly">{plan.monthlyPrice}</strong>
+                    <strong class="price-annual">{plan.annualPrice}</strong>
+                    <span class="price-monthly"> / {data.locale === "es" ? "mes" : "month"}</span>
+                    <span class="price-annual"> / {data.locale === "es" ? "año" : "year"}</span>
+                    <small class="price-annual">{plan.annualEquivalent}</small>
+                  </>
+                )}
+              </div>
+              <p class="pricing-tax-note">{data.billing.taxNote}</p>
+            </div>
+
+            <ul class="pricing-feature-list">
+              {plan.features.map((feature) => <li>{feature}</li>)}
+            </ul>
+
+            <a class:list={["button", plan.id === "enterprise" ? "button-secondary-dark" : "button-primary", "pricing-card-cta"]} href={plan.ctaKind === "sales" ? salesHref : trialHref}>
+              {plan.cta}
+            </a>
+
+            {!fullPage && <a class="pricing-more-link" href={detailHref}>{data.locale === "es" ? "Ver comparación completa" : "See full comparison"}<span aria-hidden="true"> →</span></a>}
+          </article>
+        ))}
+      </div>
+
+      {fullPage && (
+        <div class="pricing-notes" aria-label={data.locale === "es" ? "Notas de los planes" : "Plan notes"}>
+          <p>{data.fullPage.trialNote}</p>
+          <p>{data.fullPage.upgradeNote}</p>
+          <p>{data.fullPage.creditNote}</p>
+        </div>
+      )}
+    </div>
+
+    {fullPage && (
+      <div class="pricing-comparison">
+        <header class="pricing-comparison-header">
+          <p class="pricing-eyebrow">{data.label}</p>
+          <h2>{data.fullPage.comparisonHeading}</h2>
+          <p>{data.fullPage.comparisonDescription}</p>
+        </header>
+        <div class="comparison-table" role="table" aria-label={data.fullPage.comparisonHeading}>
+          {data.cards[0].categories.map((category, categoryIndex) => (
+            <section class="comparison-category" role="rowgroup">
+              <h3>{category.name}</h3>
+              <div class="comparison-row" role="row">
+                <span class="comparison-feature-label" role="cell">{data.locale === "es" ? "Qué incluye" : "What's included"}</span>
+                {data.cards.map((plan) => (
+                  <div role="cell" class:list={["comparison-plan-value", { "comparison-enterprise-value": plan.id === "enterprise" }]}>
+                    <ul>
+                      {plan.categories[categoryIndex]?.items.map((item) => <li>{item}</li>)}
+                    </ul>
+                  </div>
+                ))}
+              </div>
+            </section>
+          ))}
+        </div>
+      </div>
+    )}
+  </div>
+</section>
+
+<style>
+  .pricing-section {
+    padding: 104px 24px 120px;
+    background: var(--main-white);
+    color: var(--ink);
+  }
+
+  .pricing-page-section {
+    min-height: 100svh;
+    padding-top: 76px;
+    background: #f7f7f7;
+  }
+
+  .pricing-inner {
+    width: min(100%, 1120px);
+    margin: 0 auto;
+  }
+
+  .pricing-header,
+  .pricing-comparison-header {
+    max-width: 780px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .pricing-eyebrow {
+    margin: 0;
+    color: rgb(31 28 34 / 80%);
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.18px;
+    line-height: 1;
+    text-transform: uppercase;
+  }
+
+  .pricing-header h1,
+  .pricing-comparison-header h2 {
+    margin: 28px auto 0;
+    font-family: "Funnel Display", Arial, sans-serif;
+    font-size: var(--font-size-h2);
+    font-weight: 500;
+    letter-spacing: 0.21px;
+    line-height: 1.16;
+  }
+
+  .pricing-intro,
+  .pricing-comparison-header > p:last-child {
+    max-width: 650px;
+    margin: 20px auto 0;
+    color: rgb(31 28 34 / 72%);
+    font-size: var(--font-size-body);
+    letter-spacing: 0.04px;
+    line-height: 1.55;
+  }
+
+  .pricing-shell {
+    position: relative;
+    margin-top: 56px;
+  }
+
+  .billing-input {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .billing-controls {
+    display: flex;
+    width: fit-content;
+    max-width: 100%;
+    margin: 0 auto 30px;
+    padding: 5px;
+    border: 2px solid rgb(220 210 219 / 62%);
+    border-radius: 99px;
+    background: #fff;
+  }
+
+  .billing-input:focus-visible ~ .billing-controls {
+    outline: 2px solid var(--primary-purple);
+    outline-offset: 4px;
+  }
+
+  .billing-controls label {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 9px 14px;
+    border-radius: 99px;
+    color: rgb(31 28 34 / 68%);
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1;
+    text-transform: lowercase;
+    transition: background 160ms ease, color 160ms ease;
+  }
+
+  .billing-controls .billing-save {
+    padding: 5px 8px;
+    border-radius: 99px;
+    background: #ded9e0;
+    color: var(--ink);
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 1;
+    text-transform: none;
+  }
+
+  .pricing-shell:has(.billing-monthly:checked) .billing-controls label[for$="-monthly"],
+  .pricing-shell:has(.billing-annual:checked) .billing-controls label[for$="-annual"] {
+    background: var(--ink);
+    color: var(--main-white);
+  }
+
+  .pricing-cards {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+    align-items: stretch;
+  }
+
+  .pricing-card {
+    position: relative;
+    display: flex;
+    min-width: 0;
+    flex-direction: column;
+    padding: 28px 24px 24px;
+    border: 1px solid var(--rose-white);
+    border-radius: 18px;
+    background: #fff;
+  }
+
+  .pricing-card-highlighted {
+    border-color: var(--primary-purple);
+    box-shadow: 0 18px 40px rgb(114 85 218 / 12%);
+  }
+
+  .pricing-card-badge {
+    position: absolute;
+    top: -12px;
+    left: 20px;
+    margin: 0;
+    padding: 5px 10px;
+    border-radius: 99px;
+    background: var(--primary-purple);
+    color: #fff;
+    font-size: 11px;
+    font-weight: 600;
+  }
+
+  .pricing-card h2 {
+    margin: 0;
+    font-family: "Funnel Display", Arial, sans-serif;
+    font-size: 28px;
+    font-weight: 500;
+  }
+
+  .pricing-tagline {
+    min-height: 70px;
+    margin: 10px 0 0;
+    color: rgb(31 28 34 / 72%);
+    font-size: 14px;
+    line-height: 1.5;
+  }
+
+  .pricing-price {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0 8px;
+    margin-top: 26px;
+    color: var(--ink);
+  }
+
+  .pricing-card-enterprise .pricing-price {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+  }
+
+  .pricing-price strong {
+    font-family: "Funnel Display", Arial, sans-serif;
+    font-size: clamp(2rem, 3vw, 2.7rem);
+    font-weight: 500;
+    letter-spacing: -0.04em;
+    line-height: 1;
+  }
+
+  .pricing-price span {
+    font-size: 13px;
+  }
+
+  .pricing-price small {
+    width: 100%;
+    margin-top: 6px;
+    color: var(--primary-purple);
+    font-size: 12px;
+  }
+
+  .price-annual { display: none; }
+  .pricing-shell:has(.billing-annual:checked) .price-monthly { display: none; }
+  .pricing-shell:has(.billing-annual:checked) .price-annual { display: inline; }
+  .pricing-shell:has(.billing-annual:checked) small.price-annual { display: block; }
+
+  .pricing-tax-note {
+    margin: 10px 0 0;
+    color: rgb(31 28 34 / 55%);
+    font-size: 11px;
+  }
+
+  .pricing-feature-list {
+    display: grid;
+    gap: 12px;
+    margin: 28px 0 30px;
+    padding: 0;
+    list-style: none;
+  }
+
+  .pricing-feature-list li {
+    position: relative;
+    padding-left: 22px;
+    color: rgb(31 28 34 / 84%);
+    font-size: 14px;
+    line-height: 1.45;
+  }
+
+  .pricing-feature-list li::before {
+    position: absolute;
+    top: -1px;
+    left: 0;
+    color: var(--primary-purple);
+    content: "•";
+    font-size: 18px;
+    font-weight: 600;
+  }
+
+  .pricing-card-cta {
+    width: 100%;
+    min-height: 42px;
+    margin-top: auto;
+    border: 0;
+  }
+
+  .button-secondary-dark {
+    border-color: var(--ink);
+    background: var(--ink);
+    color: #fff;
+  }
+
+  .button-secondary-dark:hover,
+  .button-secondary-dark:focus-visible {
+    background: #332d3e;
+  }
+
+  .pricing-more-link {
+    display: block;
+    margin-top: 18px;
+    color: var(--primary-purple);
+    font-size: 13px;
+    font-weight: 600;
+    text-align: center;
+  }
+
+  .pricing-more-link:hover,
+  .pricing-more-link:focus-visible { text-decoration: underline; }
+
+  .pricing-notes {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px;
+    margin-top: 20px;
+  }
+
+  .pricing-notes p {
+    margin: 0;
+    padding: 16px;
+    border-radius: 12px;
+    background: #fff;
+    color: rgb(31 28 34 / 72%);
+    font-size: 13px;
+    line-height: 1.5;
+  }
+
+  .pricing-comparison {
+    margin-top: 112px;
+  }
+
+  .comparison-table {
+    margin-top: 40px;
+    overflow: hidden;
+    border: 1px solid var(--rose-white);
+    border-radius: 18px;
+    background: #fff;
+  }
+
+  .comparison-category + .comparison-category { border-top: 1px solid var(--rose-white); }
+
+  .comparison-category h3 {
+    margin: 0;
+    padding: 18px 20px 12px;
+    background: #fbf9fb;
+    color: var(--ink);
+    font-size: 15px;
+    font-weight: 600;
+  }
+
+  .comparison-row {
+    display: grid;
+    grid-template-columns: 1.4fr repeat(3, 1fr);
+    border-top: 1px solid rgb(220 210 219 / 65%);
+  }
+
+  .comparison-row > span,
+  .comparison-row > div {
+    min-width: 0;
+    padding: 14px 20px;
+    border-left: 1px solid rgb(220 210 219 / 65%);
+    color: rgb(31 28 34 / 72%);
+    font-size: 13px;
+    line-height: 1.45;
+  }
+
+  .comparison-row > span:first-child {
+    border-left: 0;
+    color: var(--ink);
+    font-weight: 500;
+  }
+
+  .comparison-plan-value ul {
+    display: grid;
+    gap: 8px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .comparison-plan-value li {
+    position: relative;
+    padding-left: 16px;
+  }
+
+  .comparison-plan-value li::before {
+    position: absolute;
+    left: 0;
+    color: var(--primary-purple);
+    content: "•";
+    font-weight: 600;
+  }
+
+  .comparison-enterprise-value { color: var(--primary-purple) !important; }
+
+  @media (max-width: 900px) {
+    .pricing-cards { grid-template-columns: 1fr; }
+    .pricing-card { padding: 30px; }
+    .pricing-tagline { min-height: 0; max-width: 520px; }
+    .pricing-feature-list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .pricing-notes { grid-template-columns: 1fr; }
+    .comparison-table { overflow-x: auto; }
+    .comparison-category { min-width: 780px; }
+  }
+
+  @media (max-width: 600px) {
+    .pricing-section { padding: 80px 16px 88px; }
+    .pricing-page-section { padding-top: 56px; }
+    .pricing-header h1, .pricing-comparison-header h2 { font-size: var(--font-size-h2); }
+    .pricing-feature-list { grid-template-columns: 1fr; }
+    .pricing-card { padding: 26px 20px 22px; }
+    .billing-controls label { padding-inline: 11px; font-size: 14px; }
+    .billing-controls .billing-save { padding: 4px 6px; font-size: 11px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .pricing-card-cta,
+    .billing-controls label { transition: none; }
+  }
+</style>

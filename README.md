@@ -20,12 +20,16 @@ Routes:
 
 - `/` and `/es/` — Spanish
 - `/en/` — English
+- `/planes-de-suscripcion/` — Spanish pricing page
+- `/en/subscription-plans/` — English pricing page
 
 ## Current scope
 
 The hero includes responsive desktop, tablet, and mobile layouts; bilingual navigation and CTAs; a native language dropdown; the supplied gradient background; the Chiclayo label; the emprelatam trust mark; keyboard focus states; reduced-motion handling; and basic SEO metadata.
 
 The capabilities section presents four product features in a responsive card grid using the supplied Camila product images. Feature media is served as optimized WebP with PNG fallbacks and lazy loading.
+
+The pricing section and dedicated pricing pages share localized plan data for Pro, Business, and Enterprise. Pro and Business trial requests open WhatsApp; Enterprise discovery calls open the Cal.com booking flow. Billing toggles use native radio controls and CSS without adding client-side JavaScript.
 
 Login and account-creation CTAs point to the Camila application. The sales CTA opens the BrandLift WhatsApp conversation. The primary early-access CTA remains scoped to the upcoming pilot-program section tracked in `CMD-250`.
 

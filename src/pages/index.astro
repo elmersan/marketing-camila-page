@@ -2,11 +2,22 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Hero from "../components/Hero.astro";
 import Features from "../components/Features.astro";
+import Mission from "../components/Mission.astro";
+import Pricing from "../components/Pricing.astro";
+import SiteFooter from "../components/SiteFooter.astro";
+import SiteHeader from "../components/SiteHeader.astro";
 import heroCopy from "../i18n/es/hero.json";
 import featuresCopy from "../i18n/es/features.json";
+import missionCopy from "../i18n/es/mission.json";
+import pricingCopy from "../i18n/es/pricing.json";
+import footerCopy from "../i18n/es/footer.json";
 ---
 
 <BaseLayout lang="es" title={heroCopy.meta.title} description={heroCopy.meta.description}>
+  <SiteHeader data={heroCopy} />
   <Hero data={heroCopy} />
   <Features data={featuresCopy} />
+  <Pricing data={pricingCopy} />
+  <Mission data={missionCopy} />
+  <SiteFooter data={footerCopy} />
 </BaseLayout>

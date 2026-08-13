@@ -1,0 +1,17 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import PricingPage from "../../components/PricingPage.astro";
+import SiteFooter from "../../components/SiteFooter.astro";
+import SiteHeader from "../../components/SiteHeader.astro";
+import heroCopy from "../../i18n/en/hero.json";
+import pricingCopy from "../../i18n/en/pricing.json";
+import footerCopy from "../../i18n/en/footer.json";
+---
+
+<BaseLayout lang="en" title={pricingCopy.meta.title} description={pricingCopy.meta.description}>
+  <SiteHeader data={heroCopy} homeHref="/en/" pricingHref="#pricing" />
+  <main>
+    <PricingPage data={pricingCopy} />
+  </main>
+  <SiteFooter data={footerCopy} homeHref="/en/" />
+</BaseLayout>

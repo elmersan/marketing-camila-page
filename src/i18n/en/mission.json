@@ -1,0 +1,19 @@
+{
+  "locale": "en",
+  "label": "Our mission",
+  "heading": [
+    {
+      "prefix": "“Beyond just a CRM."
+    },
+    {
+      "prefix": "Building effortless AI agents that transform how"
+    },
+    {
+      "prefix": "people ",
+      "accent": "buy and sell property.",
+      "suffix": "”"
+    }
+  ],
+  "cta": "Learn more",
+  "ctaHref": "#capabilities"
+}

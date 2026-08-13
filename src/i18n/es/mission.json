@@ -1,0 +1,22 @@
+{
+  "locale": "es",
+  "label": "Nuestra misión",
+  "heading": [
+    {
+      "prefix": "“Más allá de un simple CRM."
+    },
+    {
+      "prefix": "Construyendo agentes increíblemente fáciles de usar"
+    },
+    {
+      "prefix": "para mejorar la ",
+      "accent": "experiencia de compra y venta",
+      "suffix": " de"
+    },
+    {
+      "prefix": "propiedades”"
+    }
+  ],
+  "cta": "Conoce más",
+  "ctaHref": "#capabilities"
+}
