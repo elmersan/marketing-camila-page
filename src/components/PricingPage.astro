@@ -9,7 +9,7 @@ interface PlanPageCopy {
   annualNote?: string;
   annualSavings?: string;
   taxNote: string;
-  initialBilling?: "monthly" | "annual";
+  initialBilling?: string;
   description?: string;
   cta: string;
 }
@@ -24,13 +24,13 @@ interface Plan {
   features: string[];
   categories: Category[];
   cta: string;
-  ctaKind: "trial" | "sales";
+  ctaKind: string;
   highlighted?: boolean;
   page: PlanPageCopy;
 }
 
 interface PricingCopy {
-  locale: "en" | "es";
+  locale: string;
   label: string;
   heading: string;
   description: string;
@@ -155,7 +155,7 @@ const comparisonLabel = data.locale === "es" ? "Comparación de planes" : "Plan 
 <script>
   const initializePricingPlanSelector = () => {
     const selector = document.querySelector("[data-pricing-plan-selector]");
-    const columns = [...document.querySelectorAll("[data-pricing-plan-column]")];
+    const columns = [...document.querySelectorAll<HTMLElement>("[data-pricing-plan-column]")];
 
     if (!(selector instanceof HTMLSelectElement)) return;
 

@@ -1,0 +1,46 @@
+{
+  "locale": "es",
+  "label": "Programa Piloto",
+  "heading": {
+    "prefix": "Accede a 1 mes gratis de ",
+    "accent": "Camila Business."
+  },
+  "description": "Incrementa tu velocidad de venta con el agente Camila. Al ser parte de nuestro programa piloto te brindaremos acceso exclusivo a ciertas funcionalidades y te acompañaremos en todo el proceso de implementación. Asimismo, obtendrás tutoriales y recursos para que puedas adaptarte lo más rápido posible a la nueva forma de trabajar con el agente Camila.",
+  "requirementsText": "Revisa los requisitos del programa piloto aquí",
+  "requirementsHref": "https://www.papermark.com/view/cmstcpn4f000vjm04reomvfeg",
+  "deadline": "Cierre de postulaciones: 31 de agosto de 2026, 11:59 p. m. (hora de Perú).",
+  "fields": {
+    "firstName": "Nombre",
+    "lastName": "Apellidos",
+    "whatsapp": "WhatsApp",
+    "email": "Correo",
+    "agentId": "Código de agente inmobiliario",
+    "company": "Empresa",
+    "city": "Ciudad",
+    "experience": "¿Cuántos años tienes como agente inmobiliario?",
+    "optional": "opcional"
+  },
+  "placeholders": {
+    "firstName": "Tu nombre",
+    "lastName": "Tus apellidos",
+    "whatsapp": "900 200 101",
+    "email": "nombre@empresa.com",
+    "agentId": "21743-PN",
+    "company": "Nombre de tu empresa",
+    "city": "Ciudad"
+  },
+  "experienceOptions": {
+    "placeholder": "Selecciona una opción",
+    "lessThan1": "Menos de 1 año",
+    "between1And3": "Entre 1 a 3 años",
+    "between3And5": "Entre 3 a 5 años",
+    "moreThan5": "Más de 5 años"
+  },
+  "consent": "Acepto el tratamiento de mis datos de contacto para fines exclusivamente comerciales relacionados con el programa piloto.",
+  "submit": "Enviar postulación",
+  "submitting": "Enviando…",
+  "success": "Recibimos tu postulación correctamente.",
+  "duplicate": "Este número de WhatsApp ya fue utilizado para una postulación.",
+  "error": "No pudimos enviar tu postulación. Inténtalo nuevamente.",
+  "closed": "Las postulaciones al programa piloto están cerradas."
+}

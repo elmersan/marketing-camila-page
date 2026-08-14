@@ -5,9 +5,10 @@ A modern and minimalist marketing landing page to introduce Camila 2.0 for Real 
 ## Stack
 
 - Astro 7 static output
+- Astro Actions deployed through the Vercel adapter for server-only form handling
 - Vanilla CSS mapped to the BrandLift tokens and Funnel typography
 - Locale-specific copy in `src/i18n/en/` and `src/i18n/es/`
-- No client-side JavaScript for the current landing-page sections
+- Minimal client-side JavaScript for the pilot application form and pricing controls
 
 ## Local development
 
@@ -15,6 +16,8 @@ A modern and minimalist marketing landing page to introduce Camila 2.0 for Real 
 npm install
 npm run dev
 ```
+
+Copy `.env.example` to `.env` and provide the server-only credentials before testing pilot applications locally. Never expose `SUPABASE_SERVICE_ROLE_KEY` or `RESEND_API_KEY` through a public environment variable.
 
 Routes:
 
@@ -31,7 +34,22 @@ The capabilities section presents four product features in a responsive card gri
 
 The pricing section and dedicated pricing pages share localized plan data for Pro, Business, and Enterprise. Pro and Business trial requests open WhatsApp; Enterprise discovery calls open the Cal.com booking flow. Billing toggles use native radio controls and CSS without adding client-side JavaScript.
 
-Login and account-creation CTAs point to the Camila application. The sales CTA opens the BrandLift WhatsApp conversation. The primary early-access CTA remains scoped to the upcoming pilot-program section tracked in `CMD-250`.
+Login and account-creation CTAs point to the Camila application. The sales CTA opens the BrandLift WhatsApp conversation. The pilot-program form tracked in `CMD-250` saves applications in Supabase and sends a Spanish confirmation email through Resend.
+
+## Pilot application deployment
+
+The homepage remains prerendered. Astro Actions are deployed as an on-demand Vercel server function through `@astrojs/vercel`.
+
+Required Vercel environment variables:
+
+- `SUPABASE_URL` — `https://dipfqaruqcyzrjpuqcmk.supabase.co`
+- `SUPABASE_SERVICE_ROLE_KEY` — server-only Supabase secret
+- `RESEND_API_KEY` — server-only Resend API key with permission to send email
+- `RESEND_FROM_EMAIL` — optional; defaults to `Camila AI <no-reply@marketing.brandlift.pe>`
+
+Before deployment, apply the migrations in `supabase/migrations/`. They create `public.landing_page_form`, block public Data API access with RLS and revoked grants, and enforce unique Peruvian WhatsApp numbers. Applications remain stored until they are manually deleted or a future retention policy is introduced.
+
+The application deadline is enforced on the server at **August 31, 2026, 11:59 p.m. America/Lima**. After the deadline, the browser replaces the form with the closed-applications message and the action rejects any direct submission attempts.
 
 ## Structure
 The version 01 of this landing page cover the following sections:

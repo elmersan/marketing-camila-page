@@ -1,0 +1,485 @@
+---
+interface PilotCopy {
+  locale: string;
+  label: string;
+  heading: {
+    prefix: string;
+    accent: string;
+  };
+  description: string;
+  requirementsText: string;
+  requirementsHref: string;
+  deadline: string;
+  fields: Record<string, string>;
+  placeholders: Record<string, string>;
+  experienceOptions: Record<string, string>;
+  consent: string;
+  submit: string;
+  submitting: string;
+  success: string;
+  duplicate: string;
+  error: string;
+  closed: string;
+}
+
+interface Props {
+  data: PilotCopy;
+}
+
+const { data } = Astro.props;
+const fieldId = (name: string) => `pilot-${data.locale}-${name}`;
+---
+
+<section class="pilot-section" id="pilot-program" aria-labelledby={`pilot-heading-${data.locale}`}>
+  <div class="pilot-inner">
+    <div class="pilot-copy">
+      <p class="pilot-eyebrow">{data.label}</p>
+      <h2 id={`pilot-heading-${data.locale}`}>
+        <span>{data.heading.prefix}</span><span class="pilot-heading-accent">{data.heading.accent}</span>
+      </h2>
+      <p class="pilot-description">{data.description}</p>
+      <div class="pilot-requirements">
+        <a href={data.requirementsHref} target="_blank" rel="noreferrer">{data.requirementsText}<span aria-hidden="true"> ↗</span></a>
+      </div>
+      <p class="pilot-deadline">{data.deadline}</p>
+    </div>
+
+    <div class="pilot-form-card">
+      <form
+        class="pilot-form"
+        data-pilot-form
+        data-locale={data.locale}
+        data-submitting={data.submitting}
+        data-success={data.success}
+        data-duplicate={data.duplicate}
+        data-error={data.error}
+        data-closed={data.closed}
+      >
+        <div class="pilot-form-grid">
+          <div class="pilot-field">
+            <label for={fieldId("first-name")}>{data.fields.firstName} <span aria-hidden="true">*</span></label>
+            <input id={fieldId("first-name")} name="firstName" autocomplete="given-name" placeholder={data.placeholders.firstName} maxlength="80" required />
+          </div>
+          <div class="pilot-field">
+            <label for={fieldId("last-name")}>{data.fields.lastName} <span aria-hidden="true">*</span></label>
+            <input id={fieldId("last-name")} name="lastName" autocomplete="family-name" placeholder={data.placeholders.lastName} maxlength="80" required />
+          </div>
+          <div class="pilot-field">
+            <label for={fieldId("whatsapp")}>{data.fields.whatsapp} <span aria-hidden="true">*</span></label>
+            <div class="pilot-phone-input">
+              <span aria-hidden="true">+51</span>
+              <input id={fieldId("whatsapp")} name="whatsapp" type="tel" inputmode="numeric" autocomplete="tel-national" placeholder={data.placeholders.whatsapp} pattern="9[0-9]{8}" minlength="9" maxlength="9" required />
+            </div>
+          </div>
+          <div class="pilot-field">
+            <label for={fieldId("email")}>{data.fields.email} <span aria-hidden="true">*</span></label>
+            <input id={fieldId("email")} name="email" type="email" autocomplete="email" placeholder={data.placeholders.email} maxlength="254" required />
+          </div>
+          <div class="pilot-field pilot-field-full">
+            <label for={fieldId("agent-id")}>{data.fields.agentId} <span aria-hidden="true">*</span></label>
+            <input id={fieldId("agent-id")} name="agentId" autocapitalize="characters" placeholder={data.placeholders.agentId} pattern="[0-9]{5}-(PN|PJ)(-MVCS)?" maxlength="13" aria-describedby={fieldId("agent-id-hint")} required />
+            <small id={fieldId("agent-id-hint")}>21743-PN, 21743-PJ, 21743-PN-MVCS</small>
+          </div>
+          <div class="pilot-field">
+            <label for={fieldId("company")}>{data.fields.company} <span class="pilot-optional">({data.fields.optional})</span></label>
+            <input id={fieldId("company")} name="company" autocomplete="organization" placeholder={data.placeholders.company} maxlength="120" />
+          </div>
+          <div class="pilot-field">
+            <label for={fieldId("city")}>{data.fields.city} <span class="pilot-optional">({data.fields.optional})</span></label>
+            <input id={fieldId("city")} name="city" autocomplete="address-level2" placeholder={data.placeholders.city} maxlength="100" />
+          </div>
+          <div class="pilot-field pilot-field-full">
+            <label for={fieldId("experience")}>{data.fields.experience} <span aria-hidden="true">*</span></label>
+            <select id={fieldId("experience")} name="experienceRange" required>
+              <option value="" selected disabled>{data.experienceOptions.placeholder}</option>
+              <option value="less_than_1">{data.experienceOptions.lessThan1}</option>
+              <option value="between_1_and_3">{data.experienceOptions.between1And3}</option>
+              <option value="between_3_and_5">{data.experienceOptions.between3And5}</option>
+              <option value="more_than_5">{data.experienceOptions.moreThan5}</option>
+            </select>
+          </div>
+        </div>
+
+        <label class="pilot-consent">
+          <input name="consentCommercial" type="checkbox" required />
+          <span>{data.consent} <span aria-hidden="true">*</span></span>
+        </label>
+
+        <button class="pilot-submit" type="submit" data-submit-label={data.submit}>{data.submit}</button>
+      </form>
+
+      <p class="pilot-closed" data-pilot-closed hidden>{data.closed}</p>
+    </div>
+  </div>
+
+  <div class="pilot-toast" data-pilot-toast role="status" aria-live="polite" aria-atomic="true" hidden>
+    <span data-pilot-toast-message></span>
+    <button type="button" aria-label={data.locale === "es" ? "Cerrar mensaje" : "Close message"} data-pilot-toast-close>×</button>
+  </div>
+</section>
+
+<script>
+  import { actions } from "astro:actions";
+
+  const applicationsCloseAt = new Date("2026-09-01T05:00:00.000Z");
+
+  document.querySelectorAll<HTMLFormElement>("[data-pilot-form]").forEach((form) => {
+    const card = form.closest(".pilot-form-card");
+    const closedMessage = card?.querySelector<HTMLElement>("[data-pilot-closed]");
+    const section = form.closest(".pilot-section");
+    const toast = section?.querySelector<HTMLElement>("[data-pilot-toast]");
+    const toastMessage = toast?.querySelector<HTMLElement>("[data-pilot-toast-message]");
+    const toastClose = toast?.querySelector<HTMLButtonElement>("[data-pilot-toast-close]");
+    const submitButton = form.querySelector<HTMLButtonElement>("button[type='submit']");
+    let toastTimer: number | undefined;
+
+    const showToast = (message: string, type: "success" | "error") => {
+      if (!toast || !toastMessage) return;
+      window.clearTimeout(toastTimer);
+      toastMessage.textContent = message;
+      toast.dataset.type = type;
+      toast.hidden = false;
+      toastTimer = window.setTimeout(() => { toast.hidden = true; }, 6000);
+    };
+
+    const closeApplications = () => {
+      form.hidden = true;
+      if (closedMessage) closedMessage.hidden = false;
+    };
+
+    toastClose?.addEventListener("click", () => {
+      if (toast) toast.hidden = true;
+      window.clearTimeout(toastTimer);
+    });
+
+    if (new Date() >= applicationsCloseAt) {
+      closeApplications();
+      return;
+    }
+
+    form.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      if (!form.reportValidity() || !submitButton) return;
+
+      submitButton.disabled = true;
+      submitButton.textContent = form.dataset.submitting ?? submitButton.textContent;
+      const formData = new FormData(form);
+
+      const { error } = await actions.submitPilotApplication({
+        firstName: String(formData.get("firstName") ?? ""),
+        lastName: String(formData.get("lastName") ?? ""),
+        whatsapp: String(formData.get("whatsapp") ?? "").replace(/\D/g, ""),
+        email: String(formData.get("email") ?? ""),
+        agentId: String(formData.get("agentId") ?? "").toUpperCase(),
+        company: String(formData.get("company") ?? ""),
+        city: String(formData.get("city") ?? ""),
+        experienceRange: String(formData.get("experienceRange") ?? "") as "less_than_1" | "between_1_and_3" | "between_3_and_5" | "more_than_5",
+        consentCommercial: formData.get("consentCommercial") === "on",
+        locale: form.dataset.locale as "es" | "en",
+      });
+
+      if (!error) {
+        form.reset();
+        showToast(form.dataset.success ?? "Application received.", "success");
+      } else if (error.message === "DUPLICATE_WHATSAPP") {
+        showToast(form.dataset.duplicate ?? "This WhatsApp number has already been used.", "error");
+      } else if (error.message === "APPLICATIONS_CLOSED") {
+        closeApplications();
+        showToast(form.dataset.closed ?? "Applications are closed.", "error");
+      } else {
+        showToast(form.dataset.error ?? "Unable to submit the application.", "error");
+      }
+
+      submitButton.disabled = false;
+      submitButton.textContent = submitButton.dataset.submitLabel ?? submitButton.textContent;
+    });
+  });
+</script>
+
+<style>
+  .pilot-section {
+    position: relative;
+    padding: 104px 24px;
+    overflow: hidden;
+    background: #f5f2f5;
+    color: var(--ink);
+  }
+
+  .pilot-section::before {
+    position: absolute;
+    width: 560px;
+    height: 560px;
+    border-radius: 50%;
+    background: rgb(114 85 218 / 12%);
+    content: "";
+    filter: blur(110px);
+    pointer-events: none;
+    right: -220px;
+    top: -240px;
+  }
+
+  .pilot-inner {
+    position: relative;
+    display: grid;
+    width: min(100%, 1068px);
+    margin: 0 auto;
+    grid-template-columns: minmax(0, .9fr) minmax(520px, 1.1fr);
+    align-items: center;
+    gap: 72px;
+  }
+
+  .pilot-copy h2 {
+    max-width: 500px;
+    margin: 14px 0 0;
+    font-family: "Funnel Display", Arial, sans-serif;
+    font-size: var(--font-size-h2);
+    font-weight: 500;
+    letter-spacing: -1.2px;
+    line-height: 1.05;
+  }
+
+  .pilot-eyebrow {
+    margin: 0;
+    color: var(--ink);
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: .18px;
+    line-height: 1;
+    text-transform: uppercase;
+  }
+
+  .pilot-heading-accent {
+    color: var(--primary-purple);
+  }
+
+  .pilot-description {
+    max-width: 530px;
+    margin: 24px 0 0;
+    color: rgb(10 3 23 / 70%);
+    font-size: 16px;
+    line-height: 1.65;
+  }
+
+  .pilot-requirements {
+    margin-top: 30px;
+    padding-top: 22px;
+    border-top: 1px solid rgb(10 3 23 / 12%);
+  }
+
+  .pilot-requirements a {
+    color: var(--primary-purple);
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+
+  .pilot-deadline {
+    margin: 18px 0 0;
+    color: rgb(10 3 23 / 56%);
+    font-size: 12px;
+  }
+
+  .pilot-form-card {
+    padding: 34px;
+    border: 1px solid rgb(220 210 219 / 88%);
+    border-radius: 20px;
+    background: var(--main-white);
+    box-shadow: 0 18px 50px rgb(31 28 34 / 9%);
+  }
+
+  .pilot-form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px 16px;
+  }
+
+  .pilot-field {
+    min-width: 0;
+  }
+
+  .pilot-field-full {
+    grid-column: 1 / -1;
+  }
+
+  .pilot-field label {
+    display: block;
+    margin-bottom: 7px;
+    font-size: 14px;
+    font-weight: 600;
+  }
+
+  .pilot-field label > span:not(.pilot-optional),
+  .pilot-consent span > span {
+    color: #b72e49;
+  }
+
+  .pilot-optional {
+    color: rgb(10 3 23 / 46%);
+    font-weight: 400;
+  }
+
+  .pilot-field input,
+  .pilot-field select,
+  .pilot-phone-input {
+    width: 100%;
+    min-height: 44px;
+    border: 1px solid #dcd2db;
+    border-radius: 9px;
+    background: #fff;
+    color: var(--ink);
+    font: inherit;
+    font-size: 14px;
+  }
+
+  .pilot-field input,
+  .pilot-field select {
+    padding: 10px 12px;
+  }
+
+  .pilot-field input::placeholder {
+    color: rgb(10 3 23 / 38%);
+  }
+
+  .pilot-field input:focus,
+  .pilot-field select:focus,
+  .pilot-phone-input:focus-within {
+    border-color: var(--primary-purple);
+    outline: 3px solid rgb(114 85 218 / 14%);
+  }
+
+  .pilot-phone-input {
+    display: flex;
+    align-items: center;
+  }
+
+  .pilot-phone-input > span {
+    padding: 0 10px 0 12px;
+    border-right: 1px solid #dcd2db;
+    color: rgb(10 3 23 / 62%);
+    line-height: 22px;
+  }
+
+  .pilot-phone-input input {
+    min-height: 42px;
+    border: 0;
+    outline: 0;
+  }
+
+  .pilot-phone-input input:focus {
+    outline: 0;
+  }
+
+  .pilot-field small {
+    display: block;
+    margin-top: 6px;
+    color: rgb(10 3 23 / 48%);
+    font-size: 11px;
+  }
+
+  .pilot-consent {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin-top: 22px;
+    color: rgb(10 3 23 / 68%);
+    font-size: 12px;
+    line-height: 1.45;
+    cursor: pointer;
+  }
+
+  .pilot-consent input {
+    width: 16px;
+    height: 16px;
+    margin: 1px 0 0;
+    accent-color: var(--primary-purple);
+  }
+
+  .pilot-submit {
+    width: 100%;
+    min-height: 46px;
+    margin-top: 24px;
+    border: 0;
+    border-radius: 9px;
+    background: var(--primary-purple);
+    color: var(--main-white);
+    font: inherit;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 160ms ease, transform 160ms ease;
+  }
+
+  .pilot-submit:hover,
+  .pilot-submit:focus-visible {
+    background: #6043c9;
+    transform: translateY(-1px);
+  }
+
+  .pilot-submit:disabled {
+    cursor: wait;
+    opacity: .65;
+    transform: none;
+  }
+
+  .pilot-closed {
+    margin: 0;
+    padding: 50px 20px;
+    color: rgb(10 3 23 / 68%);
+    text-align: center;
+  }
+
+  .pilot-toast {
+    position: fixed;
+    z-index: 20;
+    right: 24px;
+    bottom: 24px;
+    display: flex;
+    width: min(calc(100% - 48px), 390px);
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+    padding: 16px 18px;
+    border: 1px solid #dcd2db;
+    border-left: 4px solid #26845a;
+    border-radius: 12px;
+    background: var(--main-white);
+    box-shadow: 0 16px 42px rgb(31 28 34 / 18%);
+    color: var(--ink);
+    font-size: 14px;
+  }
+
+  .pilot-toast[hidden] { display: none; }
+  .pilot-toast[data-type="error"] { border-left-color: #b72e49; }
+
+  .pilot-toast button {
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: inherit;
+    font-size: 22px;
+    line-height: 1;
+    cursor: pointer;
+  }
+
+  @media (max-width: 920px) {
+    .pilot-inner {
+      grid-template-columns: 1fr;
+      gap: 46px;
+    }
+
+    .pilot-copy,
+    .pilot-copy h2,
+    .pilot-description {
+      max-width: 680px;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .pilot-section { padding: 76px 16px; }
+    .pilot-form-card { padding: 24px 18px; border-radius: 16px; }
+    .pilot-form-grid { grid-template-columns: 1fr; }
+    .pilot-field-full { grid-column: auto; }
+    .pilot-toast { right: 16px; bottom: 16px; width: calc(100% - 32px); }
+  }
+</style>

@@ -1,6 +1,6 @@
 ---
 interface HeaderCopy {
-  locale: "en" | "es";
+  locale: string;
   languageLabel: string;
   languageName: string;
   languageHref: string;
@@ -20,9 +20,10 @@ interface Props {
   pricingHref?: string;
 }
 
-const { data, homeHref = "", pricingHref = "#pricing" } = Astro.props;
+const { data, homeHref = "", pricingHref } = Astro.props;
 const capabilitiesHref = `${homeHref}#capabilities`;
 const integrationsHref = `${homeHref}#integrations`;
+const plansHref = pricingHref ?? (data.locale === "es" ? "/planes-de-suscripcion/" : "/en/subscription-plans/");
 ---
 
 <header class="site-header">
@@ -47,7 +48,7 @@ const integrationsHref = `${homeHref}#integrations`;
     <nav class="desktop-nav" aria-label="Primary navigation">
       <a href={capabilitiesHref}>{data.nav.capabilities}</a>
       <a href={integrationsHref}>{data.nav.integrations}</a>
-      <a href={pricingHref}>{data.nav.pricing}</a>
+      <a href={plansHref}>{data.nav.pricing}</a>
     </nav>
 
     <div class="header-actions">

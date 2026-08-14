@@ -4,12 +4,14 @@ import Hero from "../components/Hero.astro";
 import Features from "../components/Features.astro";
 import Mission from "../components/Mission.astro";
 import Pricing from "../components/Pricing.astro";
+import PilotApplication from "../components/PilotApplication.astro";
 import SiteFooter from "../components/SiteFooter.astro";
 import SiteHeader from "../components/SiteHeader.astro";
 import heroCopy from "../i18n/es/hero.json";
 import featuresCopy from "../i18n/es/features.json";
 import missionCopy from "../i18n/es/mission.json";
 import pricingCopy from "../i18n/es/pricing.json";
+import pilotCopy from "../i18n/es/pilot.json";
 import footerCopy from "../i18n/es/footer.json";
 ---
 
@@ -19,5 +21,6 @@ import footerCopy from "../i18n/es/footer.json";
   <Features data={featuresCopy} />
   <Pricing data={pricingCopy} />
   <Mission data={missionCopy} />
+  <PilotApplication data={pilotCopy} />
   <SiteFooter data={footerCopy} />
 </BaseLayout>

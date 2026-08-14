@@ -1,0 +1,46 @@
+{
+  "locale": "en",
+  "label": "Pilot Program",
+  "heading": {
+    "prefix": "Get 1 free month of ",
+    "accent": "Camila Business."
+  },
+  "description": "Boost your sales performance with Camila, your AI sales agent. By joining our pilot program, you’ll get exclusive access to selected features and hands-on support throughout the implementation process. You’ll also receive tutorials and resources to help you adapt as quickly as possible to a new way of working with Camila.",
+  "requirementsText": "Review the pilot program requirements here",
+  "requirementsHref": "https://www.papermark.com/view/cmstcpn4f000vjm04reomvfeg",
+  "deadline": "Applications close August 31, 2026, at 11:59 p.m. Peru time.",
+  "fields": {
+    "firstName": "Name",
+    "lastName": "Last name",
+    "whatsapp": "WhatsApp",
+    "email": "Email",
+    "agentId": "Real estate agent ID",
+    "company": "Company",
+    "city": "City",
+    "experience": "How many years of experience do you have as a real estate agent?",
+    "optional": "optional"
+  },
+  "placeholders": {
+    "firstName": "Your name",
+    "lastName": "Your last name",
+    "whatsapp": "900 200 101",
+    "email": "name@company.com",
+    "agentId": "21743-PN",
+    "company": "Company name",
+    "city": "City"
+  },
+  "experienceOptions": {
+    "placeholder": "Select an option",
+    "lessThan1": "Less than 1 year",
+    "between1And3": "Between 1 and 3 years",
+    "between3And5": "Between 3 and 5 years",
+    "moreThan5": "More than 5 years"
+  },
+  "consent": "I accept the processing of my contact information exclusively for commercial purposes related to the pilot program.",
+  "submit": "Submit application",
+  "submitting": "Submitting…",
+  "success": "We received your application successfully.",
+  "duplicate": "This WhatsApp number has already been used for an application.",
+  "error": "We couldn’t submit your application. Please try again.",
+  "closed": "Applications for the pilot program are closed."
+}

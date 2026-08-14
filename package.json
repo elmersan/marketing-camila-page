@@ -6,11 +6,23 @@
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
+    "check": "astro check",
     "preview": "astro preview"
   },
   "dependencies": {
+    "@astrojs/vercel": "11.0.5",
     "@fontsource/funnel-display": "^5.3.0",
     "@fontsource/funnel-sans": "^5.3.0",
-    "astro": "^7.0.0"
+    "@supabase/supabase-js": "2.112.3",
+    "astro": "^7.0.0",
+    "resend": "6.20.0"
+  },
+  "devDependencies": {
+    "@astrojs/check": "0.9.10",
+    "supabase": "2.114.0",
+    "typescript": "6.0.3"
+  },
+  "overrides": {
+    "path-to-regexp": "6.3.0"
   }
 }

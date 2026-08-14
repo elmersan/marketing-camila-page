@@ -14,12 +14,12 @@ interface Plan {
   features: string[];
   categories: Category[];
   cta: string;
-  ctaKind: "trial" | "sales";
+  ctaKind: string;
   highlighted?: boolean;
 }
 
 interface PricingCopy {
-  locale: "en" | "es";
+  locale: string;
   label: string;
   heading: string;
   description: string;
