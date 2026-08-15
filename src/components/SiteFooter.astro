@@ -1,11 +1,18 @@
 ---
+import { MapPinIcon } from "./icons/MapPinIcon";
+
 interface FooterCopy {
   locale: string;
   description: string;
+  legal: string;
+  hqLabel: string;
+  hqAddress: string;
+  llms: string;
   sales: string;
   copyright: string;
   links: {
     capabilities: string;
+    documentation: string;
     pricing: string;
     signIn: string;
   };
@@ -18,23 +25,37 @@ interface Props {
 
 const { data, homeHref = "" } = Astro.props;
 const salesHref = "https://wa.me/51968781139";
+const hqHref = "https://share.google/v2RYxLiJtl5Esxe8k";
 ---
 
 <footer class="site-footer">
   <div class="site-footer-inner">
     <div class="site-footer-brand">
-      <a class="site-footer-mark" href={homeHref || "/"}>BRANDLIFT</a>
+      <a class="site-footer-mark" href={homeHref || "/"} aria-label="BrandLift home">
+        <img src="/Brandlift-dark-v-logo.svg" alt="BrandLift" width="64" height="64" />
+      </a>
       <p>{data.description}</p>
+      <p class="site-footer-legal">{data.legal}</p>
     </div>
-    <nav class="site-footer-nav" aria-label={data.locale === "es" ? "Navegación del pie de página" : "Footer navigation"}>
-      <a href={`${homeHref}#capabilities`}>{data.links.capabilities}</a>
-      <a href={`${homeHref}#pricing`}>{data.links.pricing}</a>
-      <a href={data.locale === "es" ? "https://camila.brandlift.pe/login" : "https://camila.brandlift.pe/login"}>{data.links.signIn}</a>
-      <a href={salesHref}>{data.sales}</a>
-    </nav>
+    <div class="site-footer-aside">
+      <nav class="site-footer-nav" aria-label={data.locale === "es" ? "Navegación del pie de página" : "Footer navigation"}>
+        <a href={`${homeHref}#capabilities`}>{data.links.capabilities}</a>
+        <a href="https://camila-eeca23b9.mintlify.io" target="_blank" rel="noreferrer">{data.links.documentation}</a>
+        <a href={`${homeHref}#pricing`}>{data.links.pricing}</a>
+        <a href={data.locale === "es" ? "https://camila.brandlift.pe/login" : "https://camila.brandlift.pe/login"}>{data.links.signIn}</a>
+        <a href={salesHref}>{data.sales}</a>
+        <a href="/llms.txt">{data.llms}</a>
+      </nav>
+      <address class="site-footer-address">
+        <span class="site-footer-address-content">
+          <span>{data.hqLabel}</span>
+          <a href={hqHref} target="_blank" rel="noreferrer">{data.hqAddress}</a>
+        </span>
+        <MapPinIcon client:idle className="site-footer-address-icon" size={17} aria-hidden="true" />
+      </address>
+    </div>
   </div>
   <div class="site-footer-bottom">
     <span>{data.copyright}</span>
-    <span>{data.locale === "es" ? "Hecho en Chiclayo, Perú" : "Made in Chiclayo, Peru"}</span>
   </div>
 </footer>

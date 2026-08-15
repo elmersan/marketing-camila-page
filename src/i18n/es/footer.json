@@ -1,10 +1,15 @@
 {
   "locale": "es",
   "description": "Camila ayuda a los equipos inmobiliarios a convertir mejor cada conversación en una oportunidad.",
+  "legal": "Agente Camila. Desarrollado por BrandLift Agencia Creativa SAC.",
+  "hqLabel": "Oficina principal",
+  "hqAddress": "Guabos 290, Santa Victoria - Chiclayo",
+  "llms": "Información para asistentes de IA",
   "sales": "Hablar con ventas",
   "copyright": "© 2026 BrandLift. Todos los derechos reservados.",
   "links": {
     "capabilities": "Capacidades",
+    "documentation": "Documentación",
     "pricing": "Planes y precios",
     "signIn": "Iniciar sesión"
   }

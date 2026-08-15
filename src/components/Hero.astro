@@ -7,7 +7,8 @@ interface HeroCopy {
   brandHref: string;
   nav: {
     capabilities: string;
-    integrations: string;
+    preLaunch: string;
+    documentation: string;
     pricing: string;
     createAccount: string;
     signIn: string;
@@ -64,7 +65,7 @@ const { data } = Astro.props;
           </h1>
           <p class="hero-description">{data.description}</p>
           <div class="hero-actions">
-            <a class="button button-primary" href="#early-access">
+            <a class="button button-primary" href="#pilot-program">
               <span>{data.primaryCta}</span>
             </a>
             <a class="button button-secondary" href="https://wa.me/51968781139">{data.secondaryCta}</a>

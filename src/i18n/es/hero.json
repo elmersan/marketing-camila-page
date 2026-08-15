@@ -6,7 +6,8 @@
   "brandHref": "/",
   "nav": {
     "capabilities": "Capacidades",
-    "integrations": "Integraciones",
+    "preLaunch": "Pre-lanzamiento",
+    "documentation": "Documentación",
     "pricing": "Planes",
     "createAccount": "Crear cuenta",
     "signIn": "Iniciar sesión"
@@ -24,7 +25,7 @@
   "partnerLabel": "Seleccionados por:",
   "partnerAlt": "emprelatam",
   "meta": {
-    "title": "Camila 2.0 | El asesor virtual para inmobiliarias",
-    "description": "Atención inmediata y personalizada para cada lead inmobiliario, desde el primer contacto hasta la reserva de una propiedad."
+    "title": "Agente de IA para inmobiliarias en Perú - Camila",
+    "description": "Agente de IA para inmobiliarias en Perú: Camila atiende, califica y da seguimiento a cada lead hasta la visita y la reserva de una propiedad."
   }
 }

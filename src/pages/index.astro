@@ -15,12 +15,14 @@ import pilotCopy from "../i18n/es/pilot.json";
 import footerCopy from "../i18n/es/footer.json";
 ---
 
-<BaseLayout lang="es" title={heroCopy.meta.title} description={heroCopy.meta.description}>
+<BaseLayout lang="es" title={heroCopy.meta.title} description={heroCopy.meta.description} canonicalPath="/">
   <SiteHeader data={heroCopy} />
-  <Hero data={heroCopy} />
-  <Features data={featuresCopy} />
-  <Pricing data={pricingCopy} />
-  <Mission data={missionCopy} />
-  <PilotApplication data={pilotCopy} />
+  <main>
+    <Hero data={heroCopy} />
+    <Features data={featuresCopy} />
+    <Pricing data={pricingCopy} />
+    <Mission data={missionCopy} />
+    <PilotApplication data={pilotCopy} />
+  </main>
   <SiteFooter data={footerCopy} />
 </BaseLayout>

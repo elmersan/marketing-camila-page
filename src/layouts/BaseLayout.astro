@@ -5,9 +5,73 @@ interface Props {
   lang: "en" | "es";
   title: string;
   description: string;
+  canonicalPath: string;
+  indexable?: boolean;
 }
 
-const { lang, title, description } = Astro.props;
+const {
+  lang,
+  title,
+  description,
+  canonicalPath,
+  indexable = true,
+} = Astro.props;
+const siteOrigin = (Astro.site ?? new URL("https://www.brandlift.pe")).toString().replace(/\/$/, "");
+const canonicalUrl = new URL(canonicalPath, `${siteOrigin}/`).toString();
+const socialImageUrl = new URL("/images/camila-abstract-gradient-hero.png", `${siteOrigin}/`).toString();
+const organizationId = `${siteOrigin}/#organization`;
+const pageSchema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": organizationId,
+      name: "BrandLift Agencia Creativa SAC",
+      alternateName: "BrandLift",
+      url: siteOrigin,
+      address: {
+        "@type": "PostalAddress",
+        streetAddress: "Guabos 290",
+        addressLocality: "Chiclayo",
+        addressRegion: "Lambayeque",
+        addressCountry: "PE",
+      },
+      sameAs: ["https://www.linkedin.com/company/brandlift-ia/"],
+    },
+    {
+      "@type": "SoftwareApplication",
+      "@id": `${siteOrigin}/#camila`,
+      name: "Camila",
+      applicationCategory: "BusinessApplication",
+      operatingSystem: "Web",
+      description: "Agente de IA para la operación comercial de proyectos inmobiliarios.",
+      url: siteOrigin,
+      creator: { "@id": organizationId },
+      publisher: { "@id": organizationId },
+    },
+    {
+      "@type": "WebSite",
+      "@id": `${siteOrigin}/#website`,
+      url: siteOrigin,
+      name: "Camila",
+      publisher: { "@id": organizationId },
+      inLanguage: "es-PE",
+    },
+    {
+      "@type": "WebPage",
+      "@id": `${canonicalUrl}#webpage`,
+      url: canonicalUrl,
+      name: title,
+      description,
+      isPartOf: { "@id": `${siteOrigin}/#website` },
+      about: { "@id": `${siteOrigin}/#camila` },
+      publisher: { "@id": organizationId },
+      inLanguage: lang === "es" ? "es-PE" : "en",
+    },
+  ],
+};
+const robots = indexable ? "index, follow" : "noindex, follow";
+const ogLocale = lang === "es" ? "es_PE" : "en_US";
 ---
 
 <!doctype html>
@@ -16,8 +80,28 @@ const { lang, title, description } = Astro.props;
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
     <meta name="description" content={description} />
+    <meta name="author" content="BrandLift Agencia Creativa SAC" />
+    <meta name="robots" content={robots} />
     <meta name="theme-color" content="#fefcfb" />
+    <link rel="icon" type="image/svg+xml" href="/Favicon_brandlift.svg" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="canonical" href={canonicalUrl} />
+    <meta property="og:site_name" content="BrandLift" />
+    <meta property="og:locale" content={ogLocale} />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:image" content={socialImageUrl} />
+    <meta property="og:image:width" content="1607" />
+    <meta property="og:image:height" content="979" />
+    <meta property="og:image:alt" content="Camila, agente de IA para inmobiliarias" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={socialImageUrl} />
     <title>{title}</title>
+    <script type="application/ld+json" is:inline set:html={JSON.stringify(pageSchema)} />
   </head>
   <body>
     <slot />

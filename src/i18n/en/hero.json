@@ -6,7 +6,8 @@
   "brandHref": "/en/",
   "nav": {
     "capabilities": "Features",
-    "integrations": "Integrations",
+    "preLaunch": "Pre-launch",
+    "documentation": "Documentation",
     "pricing": "Pricing",
     "createAccount": "Create account",
     "signIn": "Login"

@@ -1,4 +1,6 @@
 ---
+import { ArrowRightIcon } from "./icons/ArrowRightIcon";
+
 interface Category {
   name: string;
   items: string[];
@@ -59,7 +61,11 @@ const billingName = `billing-${data.locale}-${fullPage ? "page" : "section"}`;
     {fullPage && <p class="pricing-eyebrow">{data.fullPage.eyebrow}</p>}
     <header class="pricing-header">
       {!fullPage && <p class="pricing-eyebrow">{data.label}</p>}
-      <h1 class:list={[{ "pricing-page-title": fullPage }]} id={fullPage ? "pricing-page-title" : "pricing-title"}>{fullPage ? data.fullPage.heading : data.heading}</h1>
+      {fullPage ? (
+        <h1 class="pricing-page-title" id="pricing-page-title">{data.fullPage.heading}</h1>
+      ) : (
+        <h2 id="pricing-title">{data.heading}</h2>
+      )}
       <p class="pricing-intro">{fullPage ? data.fullPage.description : data.description}</p>
     </header>
 
@@ -110,7 +116,7 @@ const billingName = `billing-${data.locale}-${fullPage ? "page" : "section"}`;
               {plan.cta}
             </a>
 
-            {!fullPage && <a class="pricing-more-link" href={detailHref}>{data.locale === "es" ? "Ver comparación completa" : "See full comparison"}<span aria-hidden="true"> →</span></a>}
+            {!fullPage && <a class="pricing-more-link" href={detailHref}>{data.locale === "es" ? "Ver comparación completa" : "See full comparison"}<ArrowRightIcon client:idle size={14} aria-hidden="true" /></a>}
           </article>
         ))}
       </div>
@@ -189,6 +195,7 @@ const billingName = `billing-${data.locale}-${fullPage ? "page" : "section"}`;
   }
 
   .pricing-header h1,
+  .pricing-header h2,
   .pricing-comparison-header h2 {
     margin: 28px auto 0;
     font-family: "Funnel Display", Arial, sans-serif;
@@ -409,7 +416,11 @@ const billingName = `billing-${data.locale}-${fullPage ? "page" : "section"}`;
   }
 
   .pricing-more-link {
-    display: block;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    width: 100%;
     margin-top: 18px;
     color: var(--primary-purple);
     font-size: 13px;
@@ -518,7 +529,7 @@ const billingName = `billing-${data.locale}-${fullPage ? "page" : "section"}`;
   @media (max-width: 600px) {
     .pricing-section { padding: 80px 16px 88px; }
     .pricing-page-section { padding-top: 56px; }
-    .pricing-header h1, .pricing-comparison-header h2 { font-size: var(--font-size-h2); }
+    .pricing-header h1, .pricing-header h2, .pricing-comparison-header h2 { font-size: var(--font-size-h2); }
     .pricing-feature-list { grid-template-columns: 1fr; }
     .pricing-card { padding: 26px 20px 22px; }
     .billing-controls label { padding-inline: 11px; font-size: 14px; }

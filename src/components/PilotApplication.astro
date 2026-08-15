@@ -1,4 +1,7 @@
 ---
+import { ArrowUpRightIcon } from "./icons/ArrowUpRightIcon";
+import { XIcon } from "./icons/XIcon";
+
 interface PilotCopy {
   locale: string;
   label: string;
@@ -39,7 +42,7 @@ const fieldId = (name: string) => `pilot-${data.locale}-${name}`;
       </h2>
       <p class="pilot-description">{data.description}</p>
       <div class="pilot-requirements">
-        <a href={data.requirementsHref} target="_blank" rel="noreferrer">{data.requirementsText}<span aria-hidden="true"> ↗</span></a>
+        <a href={data.requirementsHref} target="_blank" rel="noreferrer">{data.requirementsText}<ArrowUpRightIcon client:idle size={14} aria-hidden="true" /></a>
       </div>
       <p class="pilot-deadline">{data.deadline}</p>
     </div>
@@ -114,7 +117,7 @@ const fieldId = (name: string) => `pilot-${data.locale}-${name}`;
 
   <div class="pilot-toast" data-pilot-toast role="status" aria-live="polite" aria-atomic="true" hidden>
     <span data-pilot-toast-message></span>
-    <button type="button" aria-label={data.locale === "es" ? "Cerrar mensaje" : "Close message"} data-pilot-toast-close>×</button>
+    <button type="button" aria-label={data.locale === "es" ? "Cerrar mensaje" : "Close message"} data-pilot-toast-close><XIcon client:idle size={16} aria-hidden="true" /></button>
   </div>
 </section>
 
@@ -267,6 +270,9 @@ const fieldId = (name: string) => `pilot-${data.locale}-${name}`;
   }
 
   .pilot-requirements a {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
     color: var(--primary-purple);
     font-size: 14px;
     font-weight: 600;
@@ -453,11 +459,13 @@ const fieldId = (name: string) => `pilot-${data.locale}-${name}`;
   .pilot-toast[data-type="error"] { border-left-color: #b72e49; }
 
   .pilot-toast button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     padding: 0;
     border: 0;
     background: transparent;
     color: inherit;
-    font-size: 22px;
     line-height: 1;
     cursor: pointer;
   }

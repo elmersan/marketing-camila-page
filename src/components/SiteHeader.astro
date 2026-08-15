@@ -1,4 +1,6 @@
 ---
+import { LanguagesIcon } from "./icons/LanguagesIcon";
+
 interface HeaderCopy {
   locale: string;
   languageLabel: string;
@@ -7,7 +9,8 @@ interface HeaderCopy {
   brandHref: string;
   nav: {
     capabilities: string;
-    integrations: string;
+    preLaunch: string;
+    documentation: string;
     pricing: string;
     createAccount: string;
     signIn: string;
@@ -22,7 +25,7 @@ interface Props {
 
 const { data, homeHref = "", pricingHref } = Astro.props;
 const capabilitiesHref = `${homeHref}#capabilities`;
-const integrationsHref = `${homeHref}#integrations`;
+const preLaunchHref = `${homeHref}#pilot-program`;
 const plansHref = pricingHref ?? (data.locale === "es" ? "/planes-de-suscripcion/" : "/en/subscription-plans/");
 ---
 
@@ -32,11 +35,7 @@ const plansHref = pricingHref ?? (data.locale === "es" ? "/planes-de-suscripcion
       <a class="brand-mark" href={data.brandHref} aria-label="BrandLift home">BRANDLIFT</a>
       <details class="language-menu">
         <summary class="language-switch" aria-label={`Open language menu. Current language: ${data.languageLabel}`} aria-haspopup="menu">
-          <span class="globe-icon" aria-hidden="true">
-            <img class="globe-outline" src="/icons/globe-vector.svg" alt="" />
-            <img class="globe-horizontal" src="/icons/globe-vector-1.svg" alt="" />
-            <img class="globe-meridian" src="/icons/globe-vector-2.svg" alt="" />
-          </span>
+          <LanguagesIcon client:idle className="language-icon" size={14} aria-hidden="true" />
           <span>{data.languageLabel}</span>
         </summary>
         <div class="language-options" role="menu">
@@ -47,7 +46,8 @@ const plansHref = pricingHref ?? (data.locale === "es" ? "/planes-de-suscripcion
 
     <nav class="desktop-nav" aria-label="Primary navigation">
       <a href={capabilitiesHref}>{data.nav.capabilities}</a>
-      <a href={integrationsHref}>{data.nav.integrations}</a>
+      <a href={preLaunchHref}>{data.nav.preLaunch}</a>
+      <a href="https://camila-eeca23b9.mintlify.io" target="_blank" rel="noreferrer">{data.nav.documentation}</a>
       <a href={plansHref}>{data.nav.pricing}</a>
     </nav>
 

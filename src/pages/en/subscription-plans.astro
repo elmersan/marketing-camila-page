@@ -8,7 +8,7 @@ import pricingCopy from "../../i18n/en/pricing.json";
 import footerCopy from "../../i18n/en/footer.json";
 ---
 
-<BaseLayout lang="en" title={pricingCopy.meta.title} description={pricingCopy.meta.description}>
+<BaseLayout lang="en" title={pricingCopy.meta.title} description={pricingCopy.meta.description} canonicalPath="/en/subscription-plans/" indexable={false}>
   <SiteHeader data={heroCopy} homeHref="/en/" />
   <main>
     <PricingPage data={pricingCopy} />

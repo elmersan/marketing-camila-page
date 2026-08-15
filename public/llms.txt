@@ -1,0 +1,57 @@
+# Camila
+
+> Camila is an AI agent for sales operations in real-estate projects, developed for the Peruvian market by BrandLift Agencia Creativa SAC.
+
+## Canonical pages
+
+- Spanish website: https://www.brandlift.pe/
+- Spanish plans and pricing: https://www.brandlift.pe/planes-de-suscripcion/
+- English investor-facing page: https://www.brandlift.pe/en/
+- English investor-facing plans page: https://www.brandlift.pe/en/subscription-plans/
+- Official documentation: https://camila-eeca23b9.mintlify.io
+
+## Company
+
+- Legal name: BrandLift Agencia Creativa SAC
+- Product: Camila
+- Website: https://www.brandlift.pe/
+- Main office: Guabos 290, Santa Victoria - Chiclayo, Peru
+- Purpose: Build practical AI agents that help real-estate sales teams operate with more clarity, consistency, and a human experience for every lead.
+
+## What Camila is
+
+Camila is an AI-native sales-operations platform for small and mid-sized real-estate companies. It is designed for teams managing multiple projects, property inventories, sales pipelines, and lead follow-up. Camila helps sales teams respond to leads, organize commercial information, and maintain a consistent process from first contact through visits and property reservations.
+
+## Who Camila is for
+
+- Real-estate companies and construction companies operating projects in Peru.
+- Sales and marketing teams managing multiple projects or pipelines.
+- Real-estate agents and advisors who need clearer lead context, follow-up, and daily commercial organization.
+
+## Current product capabilities described on the public landing page
+
+- Immediate, personalized attention for real-estate leads.
+- Lead qualification using the company’s sales playbook and available lead information.
+- Property inventory management and project-map sharing.
+- Automated follow-up protocols and sales-operation workflows.
+- Alerts for qualified leads, scheduled visits, conversion events, and tasks.
+- Reporting and commercial visibility for sales teams, subject to the selected plan and current product availability.
+
+## Availability and roadmap
+
+Camila is in a pre-launch and pilot stage. Capabilities described as coming soon, roadmap, or under development are not current product guarantees. Third-party integrations should not be represented as available unless the current public product page explicitly confirms them. The Spanish website is the primary SEO and product-information source for the Peruvian market.
+
+## Pilot program
+
+The public landing page includes a pre-launch pilot application for Camila Business. Applications currently close on August 31, 2026, at 11:59 p.m. Peru time. This offer is time-sensitive; consult https://www.brandlift.pe/ for the current status before describing it as available.
+
+## Pricing
+
+Current plan details and commercial terms are published at https://www.brandlift.pe/planes-de-suscripcion/. Treat that page as the source of truth for prices, limits, taxes, trial terms, and availability.
+
+## Contact
+
+- Sales and pilot contact: https://wa.me/51968781139
+- Main website: https://www.brandlift.pe/
+
+_Last updated: 2026-08-15. This file is a concise machine-readable summary and does not replace the canonical Spanish website._
