@@ -123,6 +123,7 @@ const fieldId = (name: string) => `pilot-${data.locale}-${name}`;
 
 <script>
   import { actions } from "astro:actions";
+  import confetti from "canvas-confetti";
 
   const applicationsCloseAt = new Date("2026-09-01T05:00:00.000Z");
 
@@ -148,6 +149,28 @@ const fieldId = (name: string) => `pilot-${data.locale}-${name}`;
     const closeApplications = () => {
       form.hidden = true;
       if (closedMessage) closedMessage.hidden = false;
+    };
+
+    const celebrateSubmission = () => {
+      const buttonRect = submitButton?.getBoundingClientRect();
+
+      void confetti({
+        particleCount: 90,
+        spread: 72,
+        startVelocity: 42,
+        gravity: .9,
+        scalar: .9,
+        ticks: 180,
+        origin: buttonRect
+          ? {
+              x: (buttonRect.left + buttonRect.width / 2) / window.innerWidth,
+              y: (buttonRect.top + buttonRect.height / 2) / window.innerHeight,
+            }
+          : { x: .5, y: .7 },
+        colors: ["#7255da", "#a786ff", "#fd8bbc", "#eca184", "#f8deb1"],
+        disableForReducedMotion: true,
+        zIndex: 30,
+      });
     };
 
     toastClose?.addEventListener("click", () => {
@@ -184,6 +207,7 @@ const fieldId = (name: string) => `pilot-${data.locale}-${name}`;
       if (!error) {
         form.reset();
         showToast(form.dataset.success ?? "Application received.", "success");
+        celebrateSubmission();
       } else if (error.message === "DUPLICATE_WHATSAPP") {
         showToast(form.dataset.duplicate ?? "This WhatsApp number has already been used.", "error");
       } else if (error.message === "APPLICATIONS_CLOSED") {

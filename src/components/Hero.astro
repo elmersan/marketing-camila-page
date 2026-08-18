@@ -76,7 +76,9 @@ const { data } = Astro.props;
 
     <div class="hero-partner" aria-label={data.partnerLabel}>
       <span class="hero-partner-label">{data.partnerLabel}</span>
-      <img src="/images/emprelatam-logo.png" alt={data.partnerAlt} width="180" height="36" loading="eager" decoding="async" />
+      <a href="https://emprelatam.com" target="_blank" rel="noreferrer">
+        <img src="/images/emprelatam-logo.png" alt={data.partnerAlt} width="180" height="36" loading="eager" decoding="async" />
+      </a>
     </div>
   </div>
 </section>
