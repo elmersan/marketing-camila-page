@@ -1,0 +1,20 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import ProductVision from "../components/ProductVision.astro";
+import SiteFooter from "../components/SiteFooter.astro";
+import SiteHeader from "../components/SiteHeader.astro";
+import heroCopy from "../i18n/es/hero.json";
+import footerCopy from "../i18n/es/footer.json";
+
+const title = "Nuestra Visión";
+const description = "Un breve anuncio por parte del CEO de BrandLift (Hann Vásquez) sobre los inicios del agente Camila y la nueva visión que tienen sobre el futuro del trabajo de los agentes inmobiliarios, un trabajo más enfocado en construir relaciones, gracias al avance de la capacidad que hoy en día tienen los agentes de IA, para delegar tareas.";
+const visionHeaderCopy = { ...heroCopy, languageHref: "/en/our-vision/" };
+---
+
+<BaseLayout lang="es" title={title} description={description} canonicalPath="/our-vision/">
+  <SiteHeader data={visionHeaderCopy} homeHref="/" />
+  <main>
+    <ProductVision />
+  </main>
+  <SiteFooter data={footerCopy} homeHref="/" />
+</BaseLayout>

@@ -1,0 +1,751 @@
+---
+interface Props {
+  lang?: "en" | "es";
+}
+
+const { lang = "es" } = Astro.props;
+const isEnglish = lang === "en";
+
+const copy = isEnglish
+  ? {
+      label: "Product vision",
+      titleOne: "Build stronger relationships.",
+      titleTwo: "Camila handles the rest.",
+      date: "August 22, 2026",
+      readTime: "5 minute read",
+      publicationLabel: "Publication information",
+      authorAndContentsLabel: "Author and table of contents",
+      authorTitle: "Author:",
+      authorRole: "Co-founder at BrandLift",
+      contentsTitle: "Table of contents:",
+      sections: [
+        { href: "#starting-point", label: "The starting point" },
+        { href: "#many-agents", label: "One Camila. Many specialized agents" },
+        { href: "#three-steps", label: "Getting started should take only three steps" },
+        { href: "#agent-team", label: "A team of AI specialists working for you" },
+        { href: "#strengthen-relationships", label: "Technology should strengthen relationships" },
+        { href: "#team-behind-camila", label: "The team behind Camila" },
+      ],
+      opening: {
+        id: "starting-point",
+        title: "The starting point",
+        paragraphs: [
+          "As AI agents become more capable, our vision for Camila is evolving.",
+          "Camila began as a simple n8n workflow connected to a customized CRM and a WhatsApp API account. The initial goal was straightforward: filter out spam and low-intent inquiries so real estate professionals could spend more time talking to qualified prospects who were genuinely interested in buying.",
+          "That first version taught us two important lessons.",
+          "First, customers did not always understand Camila’s role. Some thought they were speaking with a real estate agent; others saw her as a virtual assistant. When Camila explained that a human agent would take over the conversation, many customers stopped responding. The experience felt fragmented instead of seamless.",
+          "Second, adopting AI should not require real estate professionals to become technology experts. Sales teams need to see the benefits immediately, without learning how to configure multiple applications, tools, or AI agents.",
+          "These lessons led us to pause the original service, refine our product vision, and begin building Camila 2.0.",
+        ],
+      },
+      manyAgents: {
+        id: "many-agents",
+        title: "One Camila. Many specialized agents.",
+        paragraphs: [
+          "Camila 2.0 is built around one principle: simplicity.",
+          "Behind the scenes, hundreds of specialized AI agents may be required to support the different activities involved in real estate sales. Each one needs the right skills, tools, business context, and quality controls to perform its work correctly.",
+          "Managing and coordinating all those agents would be complex for almost anyone—especially professionals who should be focused on customers, properties, and relationships.",
+          "Camila removes that complexity.",
+          "Instead of interacting with multiple tools and assistants, you communicate with a single personality: Camila. She understands what you need, coordinates the appropriate specialized agents, and brings the results back to you through the channels you already use.",
+        ],
+        emphasis: "You see one Camila. She handles everything happening behind the scenes.",
+      },
+      stepsSection: {
+        id: "three-steps",
+        title: "Getting started should take only three steps",
+        introduction: "We believe setting up Camila should be simple:",
+        steps: [
+          { title: "Connect your main communication channel", description: "WhatsApp, Telegram, or email." },
+          { title: "Connect your social channels", description: "This helps Camila learn your communication style, personality, and tone of voice." },
+          { title: "Connect your business or project context", description: "This may include Google Drive, your CRM, property information, commercial documents, or other relevant sources." },
+        ],
+        closing: [
+          "That’s it.",
+          "From there, Camila can create and coordinate the specialized agents your work requires, based on your business context and the capabilities you choose to activate.",
+        ],
+      },
+      specialists: {
+        id: "agent-team",
+        title: "A team of AI specialists working for you",
+        introduction: "Depending on your needs, Camila may coordinate agents specialized in:",
+        items: [
+          "CRM management and updates",
+          "Lead qualification",
+          "Follow-up",
+          "Human handoffs",
+          "Sales and marketing copywriting",
+          "Legal analysis",
+          "Credit analysis",
+          "Lead scoring",
+          "Personal and business brand building",
+          "Property management",
+        ],
+        closing: "You do not have to find, configure, or manage these agents individually. Camila brings them together as one coordinated system designed around the way you work.",
+      },
+      relationships: {
+        id: "strengthen-relationships",
+        title: "Technology should strengthen relationships",
+        paragraphs: [
+          "Camila is not being built to replace the human side of real estate. She is being built to protect it.",
+          "By handling repetitive tasks, organizing information, following up consistently, and coordinating the right AI capabilities, Camila gives real estate professionals more time to listen, advise, negotiate, and build trust.",
+        ],
+        quote: [
+          "Because the future of real estate is not about having more tools.",
+          "It is about having more time for people.",
+        ],
+      },
+      team: {
+        id: "team-behind-camila",
+        title: "The team behind Camila",
+        paragraphs: [
+          "Steve Jobs often emphasized that great products are not built by one person, but by talented people working together toward the same goal. We believe the same.",
+          "Today, Camila is being built by a team of three. We are still small, but we share an ambitious vision and a passion for turning ideas into meaningful products from the ground up.",
+          "And we are just getting started.",
+          "We are actively looking for talented people who share our curiosity, our drive to build, and our excitement about what Camila can become. People who enjoy solving difficult problems, taking ownership, and creating something useful from a blank page.",
+        ],
+        emphasis: "Great products require great teams. We are building both.",
+      },
+    }
+  : {
+      label: "Visión de producto",
+      titleOne: "Construye relaciones más sólidas.",
+      titleTwo: "Camila se encarga del resto.",
+      date: "22 de agosto del 2026",
+      readTime: "5 minutos de lectura",
+      publicationLabel: "Información de publicación",
+      authorAndContentsLabel: "Autor y tabla de contenidos",
+      authorTitle: "Autor:",
+      authorRole: "Co-founder en BrandLift",
+      contentsTitle: "Tabla de contenidos:",
+      sections: [
+        { href: "#punto-de-inicio", label: "El punto de inicio" },
+        { href: "#muchos-agentes", label: "Una Camila. Muchos agentes especializados" },
+        { href: "#tres-pasos", label: "Comenzar debería tomar solo tres pasos" },
+        { href: "#equipo-agentes", label: "Un equipo de sub-agentes trabajando para ti" },
+        { href: "#fortalecer-relaciones", label: "La tecnología debe fortalecer las relaciones" },
+        { href: "#equipo-camila", label: "El equipo detrás de Camila" },
+      ],
+      opening: {
+        id: "punto-de-inicio",
+        title: "El punto de inicio",
+        paragraphs: [
+          "A medida que los agentes de inteligencia artificial se vuelven más capaces, nuestra visión para Camila también evoluciona.",
+          "Camila comenzó como un flujo de trabajo sencillo en n8n, conectado a un CRM personalizado y a una cuenta de la API de WhatsApp. El objetivo inicial era claro: filtrar el spam y las consultas con poca intención de compra para que los profesionales inmobiliarios pudieran dedicar más tiempo a conversar con prospectos calificados y realmente interesados.",
+          "Esa primera versión nos dejó dos aprendizajes importantes.",
+          "En primer lugar, los clientes no siempre entendían el rol de Camila. Algunos pensaban que estaban hablando con una agente inmobiliaria; otros, con una asistente virtual. Cuando Camila explicaba que un agente humano continuaría la conversación, muchos dejaban de responder. La experiencia se sentía fragmentada en lugar de fluida.",
+          "En segundo lugar, adoptar inteligencia artificial no debería exigir que los profesionales inmobiliarios se conviertan en expertos en tecnología. Los equipos comerciales necesitan percibir sus beneficios de inmediato, sin tener que aprender a configurar múltiples aplicaciones, herramientas o agentes de IA.",
+          "Estos aprendizajes nos llevaron a pausar el servicio original, refinar nuestra visión de producto y comenzar a construir Camila 2.0.",
+        ],
+      },
+      manyAgents: {
+        id: "muchos-agentes",
+        title: "Una Camila. Muchos agentes especializados.",
+        paragraphs: [
+          "Camila 2.0 se construye alrededor de un principio: la simplicidad.",
+          "Detrás de escena, pueden ser necesarios cientos de agentes de IA especializados para apoyar las diferentes actividades que forman parte de la venta de una propiedad. Cada agente necesita las habilidades, herramientas, contexto empresarial y controles de calidad adecuados para realizar correctamente su trabajo.",
+          "Administrar y coordinar todos esos agentes sería complejo para casi cualquier persona, especialmente para profesionales que deberían estar concentrados en sus clientes, propiedades y relaciones.",
+          "Camila elimina esa complejidad.",
+          "En lugar de interactuar con múltiples herramientas y asistentes, te comunicas con una sola personalidad: Camila. Ella entiende lo que necesitas, coordina a los agentes especializados adecuados y te entrega los resultados mediante los canales que ya utilizas.",
+        ],
+        emphasis: "Tú interactúas con una sola Camila. Ella se encarga de todo lo que sucede detrás.",
+      },
+      stepsSection: {
+        id: "tres-pasos",
+        title: "Comenzar debería tomar solo tres pasos",
+        introduction: "Creemos que configurar Camila debe ser sencillo:",
+        steps: [
+          { title: "Conecta tu principal canal de comunicación", description: "WhatsApp, Telegram o correo electrónico." },
+          { title: "Conecta tus canales sociales", description: "Esto permite que Camila aprenda tu estilo de comunicación, personalidad y tono de voz." },
+          { title: "Conecta el contexto de tu negocio o proyecto", description: "Puede incluir Google Drive, tu CRM, información de propiedades, documentos comerciales u otras fuentes relevantes." },
+        ],
+        closing: [
+          "Eso es todo.",
+          "A partir de ahí, Camila puede crear y coordinar los agentes especializados que tu trabajo necesita, de acuerdo con el contexto de tu negocio y las funciones que decidas activar.",
+        ],
+      },
+      specialists: {
+        id: "equipo-agentes",
+        title: "Un equipo de sub-agentes trabajando para ti",
+        introduction: "Dependiendo de tus necesidades, Camila puede coordinar agentes especializados en:",
+        items: [
+          "Gestión y actualización del CRM",
+          "Calificación de prospectos",
+          "Seguimiento comercial",
+          "Transferencia a agentes humanos",
+          "Redacción de contenidos comerciales y de marketing",
+          "Análisis legal",
+          "Análisis crediticio",
+          "Puntuación de prospectos",
+          "Desarrollo de marca personal y empresarial",
+          "Gestión de propiedades",
+        ],
+        closing: "No tendrás que buscar, configurar ni administrar cada agente por separado. Camila los reúne en un solo sistema coordinado y diseñado alrededor de tu forma de trabajar.",
+      },
+      relationships: {
+        id: "fortalecer-relaciones",
+        title: "La tecnología debe fortalecer las relaciones",
+        paragraphs: [
+          "Camila no está siendo creada para reemplazar el lado humano del negocio inmobiliario. Está siendo creada para protegerlo.",
+          "Al encargarse de las tareas repetitivas, organizar la información, realizar seguimientos consistentes y coordinar las capacidades de IA adecuadas, Camila permite que los profesionales inmobiliarios dediquen más tiempo a escuchar, asesorar, negociar y generar confianza.",
+        ],
+        quote: [
+          "Porque el futuro del sector inmobiliario no consiste en tener más herramientas.",
+          "Consiste en tener más tiempo para las personas.",
+        ],
+      },
+      team: {
+        id: "equipo-camila",
+        title: "El equipo detrás de Camila",
+        paragraphs: [
+          "Steve Jobs solía destacar que los grandes productos no son obra de una sola persona, sino de personas talentosas trabajando juntas hacia un mismo objetivo. Nosotros creemos lo mismo.",
+          "Hoy, Camila está siendo construida por un equipo de tres personas. Todavía somos un equipo pequeño, pero compartimos una visión ambiciosa y la pasión por transformar ideas en productos relevantes desde cero.",
+          "Y esto es solo el comienzo.",
+          "Estamos buscando activamente personas talentosas que compartan nuestra curiosidad, nuestras ganas de construir y nuestro entusiasmo por todo lo que Camila puede llegar a ser. Personas que disfruten resolver problemas difíciles, asumir responsabilidades y crear algo útil partiendo de una página en blanco.",
+        ],
+        emphasis: "Los grandes productos necesitan grandes equipos. Nosotros estamos construyendo ambos.",
+      },
+    };
+---
+
+<article class="vision-page">
+  <header class="vision-hero">
+    <img
+      class="vision-hero-image"
+      src="/images/camila-abstract-gradient-hero.webp"
+      alt=""
+      width="1607"
+      height="979"
+      loading="eager"
+      fetchpriority="high"
+    />
+    <div class="vision-hero-overlay"></div>
+    <div class="vision-hero-content">
+      <p class="vision-label">{copy.label}</p>
+      <h1>{copy.titleOne} <br />{copy.titleTwo}</h1>
+    </div>
+  </header>
+
+  <div class="vision-body">
+    <div class="vision-meta" aria-label={copy.publicationLabel}>
+      <div class="vision-meta-facts">
+        <span>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3v3m10-3v3M4.5 9.5h15M6 5h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2Zm2.5 8h.01m3.49 0h.01m3.49 0h.01M8.5 17h.01m3.49 0h.01m3.49 0h.01" /></svg>
+          <time datetime="2026-08-22">{copy.date}</time>
+        </span>
+        <span>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" /><path d="M12 7v5l3.5 2" /></svg>
+          {copy.readTime}
+        </span>
+      </div>
+      <div class="vision-tags" aria-label={isEnglish ? "Tags" : "Etiquetas"}>
+        <span>#ai-startups</span>
+        <span>#announcements</span>
+        <span>#product-updates</span>
+        <span>#real-estate-agents</span>
+      </div>
+    </div>
+
+    <div class="vision-opening">
+      <aside class="vision-sidebar" aria-label={copy.authorAndContentsLabel}>
+        <section class="vision-author">
+          <p class="vision-sidebar-title">{copy.authorTitle}</p>
+          <div class="vision-author-details">
+            <img src="/images/hann-vasquez-profile.jpg" alt="Hann Vásquez Rufasto" width="52" height="52" loading="lazy" />
+            <div>
+              <p>Hann Vásquez Rufasto</p>
+              <span>{copy.authorRole}</span>
+            </div>
+          </div>
+        </section>
+        <nav class="vision-toc" aria-label={copy.contentsTitle}>
+          <p class="vision-sidebar-title">{copy.contentsTitle}</p>
+          <ol>
+            {copy.sections.map((section) => (
+              <li><a href={section.href}>{section.label}</a></li>
+            ))}
+          </ol>
+        </nav>
+      </aside>
+
+      <section class="vision-copy vision-opening-copy" id={copy.opening.id}>
+        <h2>{copy.opening.title}</h2>
+        {copy.opening.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
+      </section>
+    </div>
+
+    <div class="vision-copy vision-article-copy">
+      <section id={copy.manyAgents.id}>
+        <h2>{copy.manyAgents.title}</h2>
+        {copy.manyAgents.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
+        <p class="vision-emphasis">{copy.manyAgents.emphasis}</p>
+      </section>
+
+      <section id={copy.stepsSection.id}>
+        <h2>{copy.stepsSection.title}</h2>
+        <p>{copy.stepsSection.introduction}</p>
+        <ol class="vision-steps">
+          {copy.stepsSection.steps.map((step) => (
+            <li><strong>{step.title}</strong><span>{step.description}</span></li>
+          ))}
+        </ol>
+        {copy.stepsSection.closing.map((paragraph) => <p>{paragraph}</p>)}
+      </section>
+
+      <section id={copy.specialists.id}>
+        <h2>{copy.specialists.title}</h2>
+        <p>{copy.specialists.introduction}</p>
+        <ul class="vision-specialties">
+          {copy.specialists.items.map((specialty) => <li>{specialty}</li>)}
+        </ul>
+        <p>{copy.specialists.closing}</p>
+      </section>
+
+      <section id={copy.relationships.id}>
+        <h2>{copy.relationships.title}</h2>
+        {copy.relationships.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
+        <blockquote>
+          {copy.relationships.quote.map((paragraph) => <p>{paragraph}</p>)}
+        </blockquote>
+      </section>
+
+      <section id={copy.team.id}>
+        <h2>{copy.team.title}</h2>
+        {copy.team.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
+        <p class="vision-emphasis">{copy.team.emphasis}</p>
+      </section>
+    </div>
+  </div>
+</article>
+
+<style>
+  .vision-page {
+    background: var(--main-white);
+    color: var(--ink);
+  }
+
+  .vision-hero {
+    position: relative;
+    display: grid;
+    min-height: 254px;
+    overflow: hidden;
+    color: var(--main-white);
+    isolation: isolate;
+    place-items: center;
+  }
+
+  .vision-hero-image,
+  .vision-hero-overlay {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .vision-hero-image {
+    z-index: -2;
+    object-fit: cover;
+    object-position: center 48%;
+  }
+
+  .vision-hero-overlay {
+    z-index: -1;
+    background: rgb(10 3 23 / 50%);
+  }
+
+  .vision-hero-content {
+    width: min(calc(100% - 40px), 900px);
+    padding: 38px 0 34px;
+    text-align: center;
+  }
+
+  .vision-label {
+    margin: 0 0 24px;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    line-height: 1;
+    text-transform: uppercase;
+  }
+
+  .vision-hero h1 {
+    margin: 0;
+    font-family: "Funnel Display", Arial, sans-serif;
+    font-size: clamp(2rem, 3.4vw, 2.625rem);
+    font-weight: 500;
+    letter-spacing: -0.015em;
+    line-height: 1.14;
+  }
+
+  .vision-body {
+    width: min(calc(100% - 40px), 944px);
+    margin: 0 auto;
+    padding: 38px 0 112px;
+  }
+
+  .vision-meta {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 22px;
+    color: rgb(31 28 34 / 72%);
+    font-size: 12px;
+  }
+
+  .vision-meta-facts,
+  .vision-tags,
+  .vision-meta-facts span {
+    display: flex;
+    align-items: center;
+  }
+
+  .vision-meta-facts {
+    gap: 24px;
+  }
+
+  .vision-meta-facts span {
+    gap: 7px;
+  }
+
+  .vision-meta svg {
+    width: 17px;
+    height: 17px;
+    fill: none;
+    stroke: currentColor;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-width: 1.6;
+  }
+
+  .vision-tags {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+  }
+
+  .vision-tags span {
+    padding: 3px 9px;
+    border-radius: 999px;
+    background: #faf8fa;
+    color: rgb(31 28 34 / 64%);
+    font-size: 10px;
+    line-height: 1.2;
+  }
+
+  .vision-opening {
+    display: grid;
+    align-items: start;
+    gap: 48px;
+    margin-top: 62px;
+    grid-template-columns: 330px minmax(0, 1fr);
+  }
+
+  .vision-sidebar {
+    overflow: hidden;
+    border: 1px solid var(--rose-white);
+    border-radius: 16px;
+  }
+
+  .vision-author,
+  .vision-toc {
+    padding: 30px 24px;
+  }
+
+  .vision-author {
+    padding-bottom: 22px;
+  }
+
+  .vision-toc {
+    position: relative;
+    padding-top: 26px;
+  }
+
+  .vision-toc::before {
+    position: absolute;
+    top: 0;
+    right: 24px;
+    left: 24px;
+    height: 1px;
+    background: var(--rose-white);
+    content: "";
+  }
+
+  .vision-sidebar-title {
+    margin: 0 0 20px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    line-height: 1;
+    text-transform: uppercase;
+  }
+
+  .vision-author-details {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .vision-author-details img {
+    width: 52px;
+    height: 52px;
+    flex: 0 0 52px;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: center 22%;
+  }
+
+  .vision-author-details p,
+  .vision-author-details span {
+    margin: 0;
+  }
+
+  .vision-author-details p {
+    font-size: 15px;
+    line-height: 1.35;
+  }
+
+  .vision-author-details span {
+    display: block;
+    margin-top: 4px;
+    color: rgb(31 28 34 / 72%);
+    font-size: 12px;
+    line-height: 1.4;
+  }
+
+  .vision-toc ol {
+    display: grid;
+    gap: 13px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .vision-toc a {
+    font-size: 12px;
+    line-height: 1.35;
+    text-decoration: underline;
+    text-decoration-color: rgb(10 3 23 / 40%);
+    text-underline-offset: 3px;
+    transition: color 160ms ease, text-decoration-color 160ms ease;
+  }
+
+  .vision-toc a:hover,
+  .vision-toc a:focus-visible {
+    color: var(--primary-purple);
+    text-decoration-color: currentColor;
+  }
+
+  .vision-copy {
+    color: rgb(31 28 34 / 78%);
+    font-size: 15px;
+    letter-spacing: 0.005em;
+    line-height: 1.5;
+  }
+
+  .vision-copy section {
+    scroll-margin-top: calc(var(--header-height) + 24px);
+  }
+
+  .vision-copy h2 {
+    margin: 0 0 16px;
+    color: var(--ink);
+    font-family: "Funnel Display", Arial, sans-serif;
+    font-size: 19px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    line-height: 1.25;
+  }
+
+  .vision-copy p {
+    margin: 0 0 20px;
+  }
+
+  .vision-copy p:last-child {
+    margin-bottom: 0;
+  }
+
+  .vision-article-copy {
+    margin-top: 36px;
+  }
+
+  .vision-article-copy > section {
+    margin-top: 54px;
+  }
+
+  .vision-article-copy > section:first-child {
+    margin-top: 0;
+  }
+
+  .vision-article-copy h2 {
+    text-align: center;
+  }
+
+  .vision-emphasis {
+    color: var(--ink);
+    font-weight: 500;
+  }
+
+  .vision-steps {
+    display: grid;
+    gap: 14px;
+    margin: 22px 0;
+    padding: 0;
+    counter-reset: vision-step;
+    list-style: none;
+  }
+
+  .vision-steps li {
+    position: relative;
+    min-height: 42px;
+    padding-left: 54px;
+    counter-increment: vision-step;
+  }
+
+  .vision-steps li::before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: grid;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: rgb(114 85 218 / 11%);
+    color: var(--primary-purple);
+    content: counter(vision-step);
+    font-weight: 600;
+    place-items: center;
+  }
+
+  .vision-steps strong,
+  .vision-steps span {
+    display: block;
+  }
+
+  .vision-steps strong {
+    color: var(--ink);
+  }
+
+  .vision-specialties {
+    display: grid;
+    margin: 22px 0 26px;
+    padding: 0;
+    gap: 10px 32px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    list-style: none;
+  }
+
+  .vision-specialties li {
+    position: relative;
+    padding-left: 20px;
+  }
+
+  .vision-specialties li::before {
+    position: absolute;
+    top: 0.65em;
+    left: 2px;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--primary-purple);
+    content: "";
+  }
+
+  blockquote {
+    margin: 30px 0 0;
+    padding: 26px 30px;
+    border-left: 3px solid var(--primary-purple);
+    border-radius: 0 14px 14px 0;
+    background: #faf8fa;
+    color: var(--ink);
+    font-family: "Funnel Display", Arial, sans-serif;
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 1.4;
+  }
+
+  blockquote p {
+    margin-bottom: 8px;
+  }
+
+  @media (max-width: 800px) {
+    .vision-opening {
+      gap: 32px;
+      grid-template-columns: 280px minmax(0, 1fr);
+    }
+
+    .vision-author,
+    .vision-toc {
+      padding-inline: 20px;
+    }
+  }
+
+  @media (max-width: 700px) {
+    .vision-hero {
+      min-height: 310px;
+    }
+
+    .vision-hero-content {
+      padding-inline: 2px;
+    }
+
+    .vision-hero h1 {
+      font-size: clamp(2rem, 9vw, 2.5rem);
+    }
+
+    .vision-hero h1 br {
+      display: none;
+    }
+
+    .vision-body {
+      width: min(calc(100% - 32px), 944px);
+      padding-top: 32px;
+      padding-bottom: 80px;
+    }
+
+    .vision-meta-facts {
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px 20px;
+    }
+
+    .vision-tags {
+      gap: 8px;
+    }
+
+    .vision-opening {
+      display: flex;
+      flex-direction: column;
+      margin-top: 44px;
+    }
+
+    .vision-sidebar {
+      width: 100%;
+    }
+
+    .vision-copy {
+      font-size: 15px;
+    }
+
+    .vision-article-copy {
+      margin-top: 54px;
+    }
+
+    .vision-article-copy > section {
+      margin-top: 48px;
+    }
+
+    .vision-copy h2,
+    .vision-article-copy h2 {
+      font-size: 20px;
+      text-align: left;
+    }
+
+    .vision-specialties {
+      grid-template-columns: 1fr;
+    }
+
+    blockquote {
+      padding: 22px 20px;
+      font-size: 18px;
+    }
+  }
+</style>

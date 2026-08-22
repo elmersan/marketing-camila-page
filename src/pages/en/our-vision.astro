@@ -1,0 +1,20 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import ProductVision from "../../components/ProductVision.astro";
+import SiteFooter from "../../components/SiteFooter.astro";
+import SiteHeader from "../../components/SiteHeader.astro";
+import heroCopy from "../../i18n/en/hero.json";
+import footerCopy from "../../i18n/en/footer.json";
+
+const title = "Our Vision";
+const description = "A brief announcement from BrandLift CEO Hann Vásquez about Camila's beginnings and our new vision for the future of real estate work: helping professionals focus on building relationships by delegating operational tasks to increasingly capable AI agents.";
+const visionHeaderCopy = { ...heroCopy, languageHref: "/our-vision/" };
+---
+
+<BaseLayout lang="en" title={title} description={description} canonicalPath="/en/our-vision/" indexable={false}>
+  <SiteHeader data={visionHeaderCopy} homeHref="/en/" />
+  <main>
+    <ProductVision lang="en" />
+  </main>
+  <SiteFooter data={footerCopy} homeHref="/en/" />
+</BaseLayout>

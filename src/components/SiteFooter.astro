@@ -1,7 +1,7 @@
 ---
 interface FooterCopy {
   locale: string;
-  team: string;
+  vision: string;
   instagram: string;
   documentation: string;
   llms: string;
@@ -14,15 +14,15 @@ interface Props {
   homeHref?: string;
 }
 
-const { data, homeHref = "" } = Astro.props;
-const teamHref = `${homeHref}#team`;
+const { data } = Astro.props;
+const visionHref = data.locale === "es" ? "/our-vision/" : "/en/our-vision/";
 const instagramHref = "https://www.instagram.com/brandlift.peru/";
 ---
 
 <footer class="site-footer">
   <div class="site-footer-inner">
     <nav class="site-footer-nav" aria-label={data.locale === "es" ? "Navegación del pie de página" : "Footer navigation"}>
-      <a href={teamHref}>{data.team}</a>
+      <a href={visionHref}>{data.vision}</a>
       <a href={instagramHref} target="_blank" rel="noreferrer">{data.instagram}</a>
       <a href="https://camila-eeca23b9.mintlify.io" target="_blank" rel="noreferrer">{data.documentation}</a>
       <a class="site-footer-llms" href="/llms.txt">{data.llms}</a>
