@@ -36,8 +36,18 @@ const { data } = Astro.props;
 
 <section class="hero" data-locale={data.locale} aria-labelledby="hero-title">
   <div class="hero-stage">
-    <div class="hero-announcement" role="note">
+    <div class="hero-announcement" role="note" data-hero-announcement>
       <span>{data.announcement}</span>
+      <button
+        class="hero-announcement-close"
+        type="button"
+        aria-label={data.locale === "es" ? "Cerrar anuncio" : "Close announcement"}
+        data-hero-announcement-close
+      >
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M6 6l12 12M18 6L6 18" />
+        </svg>
+      </button>
     </div>
 
     <picture class="hero-image-frame" aria-hidden="true">
@@ -82,3 +92,13 @@ const { data } = Astro.props;
     </div>
   </div>
 </section>
+
+<script>
+  document.querySelectorAll<HTMLElement>("[data-hero-announcement]").forEach((announcement) => {
+    const closeButton = announcement.querySelector<HTMLButtonElement>("[data-hero-announcement-close]");
+
+    closeButton?.addEventListener("click", () => {
+      announcement.hidden = true;
+    });
+  });
+</script>

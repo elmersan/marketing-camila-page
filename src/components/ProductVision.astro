@@ -85,10 +85,11 @@ const copy = isEnglish
       relationships: {
         id: "strengthen-relationships",
         title: "Technology should strengthen relationships",
-        paragraphs: [
-          "Camila is not being built to replace the human side of real estate. She is being built to protect it.",
-          "By handling repetitive tasks, organizing information, following up consistently, and coordinating the right AI capabilities, Camila gives real estate professionals more time to listen, advise, negotiate, and build trust.",
-        ],
+        introduction: "Camila is not being built to replace the human side of real estate. She is being built to protect it.",
+        capabilitiesBefore: "By handling repetitive tasks, organizing information, following up consistently, and coordinating the right ",
+        capabilitiesLabel: "AI capabilities",
+        capabilitiesAfter: ", Camila gives real estate professionals more time to listen, advise, negotiate, and build trust.",
+        capabilitiesHref: "/en/#capabilities",
         quote: [
           "Because the future of real estate is not about having more tools.",
           "It is about having more time for people.",
@@ -184,10 +185,11 @@ const copy = isEnglish
       relationships: {
         id: "fortalecer-relaciones",
         title: "La tecnología debe fortalecer las relaciones",
-        paragraphs: [
-          "Camila no está siendo creada para reemplazar el lado humano del negocio inmobiliario. Está siendo creada para protegerlo.",
-          "Al encargarse de las tareas repetitivas, organizar la información, realizar seguimientos consistentes y coordinar las capacidades de IA adecuadas, Camila permite que los profesionales inmobiliarios dediquen más tiempo a escuchar, asesorar, negociar y generar confianza.",
-        ],
+        introduction: "Camila no está siendo creada para reemplazar el lado humano del negocio inmobiliario. Está siendo creada para protegerlo.",
+        capabilitiesBefore: "Al encargarse de las tareas repetitivas, organizar la información, realizar seguimientos consistentes y coordinar las ",
+        capabilitiesLabel: "capacidades de IA",
+        capabilitiesAfter: " adecuadas, Camila permite que los profesionales inmobiliarios dediquen más tiempo a escuchar, asesorar, negociar y generar confianza.",
+        capabilitiesHref: "/#capabilities",
         quote: [
           "Porque el futuro del sector inmobiliario no consiste en tener más herramientas.",
           "Consiste en tener más tiempo para las personas.",
@@ -302,7 +304,10 @@ const copy = isEnglish
 
       <section id={copy.relationships.id}>
         <h2>{copy.relationships.title}</h2>
-        {copy.relationships.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
+        <p>{copy.relationships.introduction}</p>
+        <p>
+          {copy.relationships.capabilitiesBefore}<a class="vision-inline-link" href={copy.relationships.capabilitiesHref}>{copy.relationships.capabilitiesLabel}</a>{copy.relationships.capabilitiesAfter}
+        </p>
         <blockquote>
           {copy.relationships.quote.map((paragraph) => <p>{paragraph}</p>)}
         </blockquote>
@@ -312,6 +317,17 @@ const copy = isEnglish
         <h2>{copy.team.title}</h2>
         {copy.team.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
         <p class="vision-emphasis">{copy.team.emphasis}</p>
+        <figure class="vision-team-photo">
+          <img
+            src="/images/brandlift-team.jpg"
+            alt="Equipo fundador de BrandLift"
+            width="1600"
+            height="1205"
+            loading="lazy"
+            decoding="async"
+          />
+          <figcaption>BrandLift all hands meeting - Chiclayo City, Peru</figcaption>
+        </figure>
       </section>
     </div>
   </div>
@@ -582,6 +598,43 @@ const copy = isEnglish
   .vision-emphasis {
     color: var(--ink);
     font-weight: 500;
+  }
+
+  .vision-inline-link {
+    color: var(--ink);
+    font-weight: 500;
+    text-decoration: underline;
+    text-decoration-color: rgb(114 85 218 / 58%);
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
+    transition: color 160ms ease, text-decoration-color 160ms ease;
+  }
+
+  .vision-inline-link:hover,
+  .vision-inline-link:focus-visible {
+    color: var(--primary-purple);
+    text-decoration-color: currentColor;
+  }
+
+  .vision-team-photo {
+    width: min(100%, 760px);
+    margin: 34px auto 0;
+  }
+
+  .vision-team-photo img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 16px;
+  }
+
+  .vision-team-photo figcaption {
+    margin-top: 10px;
+    color: rgb(31 28 34 / 58%);
+    font-size: 12px;
+    font-style: italic;
+    line-height: 1.4;
+    text-align: center;
   }
 
   .vision-steps {
