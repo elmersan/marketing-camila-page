@@ -1,0 +1,198 @@
+---
+interface Props { lang?: "es" | "en"; }
+const { lang = "es" } = Astro.props;
+const en = lang === "en";
+const copy = en ? {
+  label: "Camila Insights", title: "The AI agent is rarely the problem.", date: "September 3, 2026", read: "10 minute read",
+  author: "Author:", role: "Co-founder at BrandLift", contents: "Table of contents:", tags: ["AI agents", "real estate projects", "real estate advisors"],
+  sections: [
+    { id: "real-estate-boom", title: "The real estate boom in northern Peru", paragraphs: [
+      "Lambayeque is one of the regions showing accelerated growth in the development and sale of new real estate projects. Its coastal location, cuisine, productive land, and prices that remain attractive compared with other markets have drawn buyers and investors.",
+      "By August 2026, our internal research had identified more than 30 projects in the region. About 40% were apartments or houses between 40 m² and 90 m², usually starting near S/100,000 and reaching S/150,000. Another relevant category was lots for urban expansion, frequently priced between S/15,000 and S/20,000, with a significant supply of 90 m² lots.",
+      "This growth is also connected to programs such as Techo Propio and public works that create expectations of future appreciation. The market, however, is not made up only of buyers already living in Lambayeque. In the conversations we analyzed, we found people who had moved to Lima or other large cities and, after years of work, wanted to invest in their home region to build a house, country home, or future business.",
+      "This makes sales particularly sensitive to follow-up. Many prospects need the exact location, documentation, financing details, and a visit coordinated for when they return. Their intent may exist from the first contact, but the decision often matures over weeks or months.",
+      "In this context, real estate companies do not only need to generate more demand. They also need to respond quickly, preserve the context of every conversation, and help advisors identify which opportunities are truly ready to move forward."
+    ]},
+    { id: "urgent-problems", title: "Urgent problems", intro: "As in any growing market, development comes with operational challenges. At the beginning of the year, we thought lead generation was the main problem. After speaking with managers, marketing leaders, and real estate advisors, we discovered that much of the loss happened later: during qualification, distribution, follow-up, and closing.", problems: [
+      ["Processes and commercial knowledge are not always documented.", "A real estate company’s know-how is one of its main differentiators: how it profiles a buyer, which questions it asks, how it handles objections, when it schedules a visit, and what information it needs to recommend a project. Much of that knowledge, however, lives only in the experience of the longest-serving advisors. Without a playbook, reliable information source, and clear escalation rules, an AI agent must work from incomplete instructions. One of our first lessons was to organize the process: record stages, document FAQs, define minimum qualification criteria, and turn the team’s best practices into reusable skills and workflows."],
+      ["Changing how people work creates more friction than installing the technology.", "Some teams still organized prospects in basic spreadsheets without defined commercial stages. In others, a CRM existed, but not everyone checked the app, updated contacts, or knew how to make it part of their routine. Age is not the determining factor; digital familiarity, perceived usefulness, and support are. We chose small pilots with advisors willing to participate from the beginning and learned that individual training does not scale: adoption requires internal owners, follow-up, and frequent feedback."],
+      ["Responding to everyone delays the advisor’s work.", "Teams receive contacts with very different levels of intent, but do not always have clear prioritization rules. In two sector experiences, around 70% of contacts were estimated to be insufficiently qualified or not to require immediate attention. Meanwhile, advisors spend much of the day on visits, tours, meetings, and documents while WhatsApp keeps accumulating questions. The goal should not be to automate more conversations, but to help the team recognize which ones need immediate human attention."],
+      ["Without evaluation and supervision, the agent repeats operational mistakes.", "Giving feedback to an AI agent is as important as giving it to a new colleague. Consistent results require examples, quality criteria, current sources, and clear limits. In our first implementations, an incorrect result did not always mean the model was incapable: sometimes the CRM was outdated, inventory did not match the current offer, or nobody had defined a correct answer. Missing information should not automatically become a negative score. The agent should explain what it used and let the advisor correct the result."]
+    ], closing: "These problems showed us that implementing AI agents is not just connecting a model to WhatsApp or a CRM. It also requires reviewing daily operations, organizing information, documenting knowledge, and supporting people through change. Technology expands the team’s capacity, but it does not replace the work of building a clear commercial operation."},
+    { id: "camila", title: "Our proposal: Camila", paragraphs: [
+      "These lessons led to Camila, an agentic application designed to complement the real estate advisor’s work. Our intention is not to replace advisors, but to protect the most human part of the sale: listening, advising, negotiating, and building trust.",
+      "Camila’s first version began as a workflow connected to WhatsApp and a CRM. It helped us validate concrete tasks: answering initial questions, collecting information, recording contacts, qualifying prospects, and transferring conversations to an advisor with more context. It also exposed an important limitation: when the customer did not understand who they were talking to, or the transition to a person felt abrupt, the experience lost continuity.",
+      "This led us to rethink the product. Camila 2.0 is being built around a simple idea: the advisor should not have to learn how to configure multiple agents and applications. They interact with one Camila while she coordinates the required capabilities behind the scenes.",
+      "Instead of assigning an opaque priority, we are developing explainable Lead Scoring that compares each contact with the relevant project. When data is missing, Camila should show what she needs and suggest the next question rather than invent a conclusion.",
+      "We also want Camila to help after the first contact: remember abandoned opportunities, prepare a daily summary, propose messages from the latest notes, record visits, and keep the next commercial action visible. The goal is not for advisors to talk less with customers, but to arrive better prepared for the conversations that matter."
+    ], bullets: ["Business context: projects, inventory, commercial terms, FAQs, and playbooks.", "Commercial management: contacts, deals, tasks, visits, notes, and pipeline stages.", "Specialized agents: qualification, follow-up, CRM updates, handoff, and content generation.", "Advisor experience: a simple, mobile interface for work inside and outside the office."]},
+    { id: "changing-work", title: "Work is constantly changing", paragraphs: [
+      "Building Camila forced us to question an early assumption: that developing a good agent would be enough for a company to start working differently. In practice, even capable technology can fail when installed on incomplete data, informal processes, and habits nobody is willing to change.",
+      "In one implementation, we paused part of the development and tested existing tools first. The sequence was more useful than continuing to accumulate features: adopt, train, integrate, document, and only then build on what we learned. Pausing the product did not mean abandoning the vision; it meant protecting it from our own assumptions.",
+      "Adoption does not happen on launch day. It happens when an advisor discovers that updating a contact takes less time, that several sheets are no longer needed to prepare an agenda, or that the context of a conversation is available before a call. Each small benefit helps replace an old habit with a new way of working.",
+      "That is why we believe the agent is rarely the only problem. The result depends on information quality, process clarity, ease of use, and feedback frequency. When a company changes tools without changing its operation, it digitizes the same disorder. When it first organizes its knowledge and supports its team, AI can become a true extension of their capabilities.",
+      "Our vision for Camila continues to evolve with every conversation and implementation. We do not want to build another chatbot that answers more messages. We want to build a colleague who understands real estate context, coordinates specialized agents, and gives advisors time back for what no automation should take away: being present for their customers."
+    ]}
+  ]
+} : {
+  label: "Camila Insights", title: "El agente casi nunca es el problema.", date: "3 de septiembre de 2026", read: "10 minutos de lectura",
+  author: "Autor:", role: "Co-fundador de BrandLift", contents: "Tabla de contenidos:", tags: ["Agentes de IA", "proyectos inmobiliarios", "asesores inmobiliarios"],
+  sections: [
+    { id: "boom-inmobiliario", title: "El boom inmobiliario en el norte del Perú", paragraphs: ["Lambayeque es una de las regiones que viene mostrando un crecimiento acelerado en el desarrollo y comercialización de nuevos proyectos inmobiliarios. Su ubicación cerca del mar, su gastronomía, la disponibilidad de tierras productivas y unos precios todavía atractivos frente a otros mercados han despertado el interés de compradores e inversionistas.", "Hasta agosto de 2026, nuestro levantamiento interno identificaba más de 30 proyectos en la región. Cerca del 40% correspondía a departamentos o casas de entre 40 m² y 90 m², con precios que normalmente partían alrededor de los S/100 mil y podían llegar a los S/150 mil. Una segunda categoría relevante era la venta de lotes para expansión urbana, con tickets frecuentes entre S/15 mil y S/20 mil y una oferta importante de lotes de 90 m².", "Este crecimiento también está relacionado con programas como Techo Propio y con obras públicas que alimentan la expectativa de una futura valorización. Sin embargo, el mercado no se compone únicamente de compradores que ya viven en Lambayeque. En las conversaciones que analizamos encontramos casos de personas que migraron a Lima u otras ciudades más grandes y que, después de varios años de trabajo, buscaban invertir en su región de origen para construir una vivienda, una casa de campo o un futuro negocio.", "Esta característica hace que la venta sea especialmente sensible al seguimiento. Muchos prospectos necesitan conocer la ubicación exacta, revisar la documentación, entender el financiamiento y coordinar una visita cuando regresen a la región. La intención puede existir desde el primer contacto, pero la decisión suele madurar durante semanas o meses.", "En este contexto, las inmobiliarias no sólo necesitan generar más demanda. También necesitan responder con rapidez, conservar el contexto de cada conversación y ayudar a sus asesores a identificar qué oportunidades están realmente preparadas para avanzar."]},
+    { id: "problemas-urgentes", title: "Problemas urgentes", intro: "Como ocurre en todo proceso de crecimiento, el desarrollo del mercado viene acompañado de retos operativos. A inicios de año empezamos pensando que el principal problema estaba en la generación de leads. Después de conversar con gerentes, responsables de marketing y asesores inmobiliarios, descubrimos que buena parte de la pérdida ocurría después: en la calificación, la distribución, el seguimiento y el cierre.", problems: [
+      ["Los procesos y el conocimiento comercial no siempre están documentados.", "El know-how de una inmobiliaria es uno de sus principales diferenciales: cómo perfila a un comprador, qué preguntas utiliza, cómo responde objeciones, cuándo agenda una visita y qué información necesita para recomendar un proyecto. Sin embargo, gran parte de ese conocimiento suele vivir en la experiencia de los asesores con más tiempo en la empresa. Si no existe un playbook, una fuente confiable de información y reglas claras de escalamiento, el agente tiene que trabajar con instrucciones incompletas. Uno de nuestros primeros aprendizajes fue empezar por ordenar el proceso: registrar estados, documentar preguntas frecuentes, definir criterios mínimos de calificación y convertir las mejores prácticas del equipo en habilidades y flujos reutilizables."],
+      ["Cambiar la forma de trabajar genera más fricción que instalar la tecnología.", "En algunos equipos encontramos asesores que todavía organizaban sus prospectos en hojas de Excel con columnas básicas y sin estados comerciales definidos. En otros casos, el CRM ya existía, pero no todos revisaban la aplicación, actualizaban los contactos o entendían cómo incorporarla a su rutina. El factor decisivo es la familiaridad digital, la percepción de utilidad y el acompañamiento recibido. Por eso elegimos trabajar con pilotos pequeños y con asesores dispuestos a participar desde el inicio. También entendimos que la capacitación individual no escala: la adopción requiere responsables internos, seguimiento y espacios frecuentes de retroalimentación."],
+      ["Responder a todo el mundo retrasa el trabajo del asesor.", "En las reuniones apareció un patrón consistente: los equipos reciben contactos con niveles de interés muy distintos, pero no siempre cuentan con reglas claras para priorizarlos. En dos experiencias del sector se estimó que alrededor del 70% de los contactos no estaba suficientemente calificado o no merecía atención inmediata. El objetivo no debería ser conversar automáticamente con más personas, sino ayudar al equipo a reconocer cuáles conversaciones requieren atención humana inmediata."],
+      ["Sin evaluación ni supervisión, el agente repite los errores de la operación.", "Dar feedback a un agente de IA es tan importante como hacerlo con un nuevo colaborador. Para producir un resultado consistente necesita ejemplos de buenas respuestas, criterios de calidad, fuentes actualizadas y límites claros. Durante nuestras primeras implementaciones comprobamos que un resultado incorrecto no siempre indicaba que el modelo fuera incapaz. La ausencia de información no debe convertirse automáticamente en una calificación negativa. La IA debe explicar qué información utilizó y permitir que el asesor corrija el resultado."]
+    ], closing: "Estos problemas nos demostraron que implementar agentes de IA no consiste únicamente en conectar un modelo con WhatsApp o con un CRM. También exige revisar la operación diaria, ordenar la información, documentar el conocimiento y acompañar a las personas durante el cambio. La tecnología amplía la capacidad del equipo, pero no sustituye el trabajo de construir una operación comercial clara."},
+    { id: "camila", title: "Nuestra propuesta: Camila", paragraphs: ["De estos aprendizajes nació Camila: una aplicación agéntica diseñada para complementar el trabajo del asesor inmobiliario. Nuestra intención no es reemplazarlo, sino proteger la parte más humana de la venta: escuchar, asesorar, negociar y generar confianza.", "La primera versión de Camila comenzó como un flujo conectado a WhatsApp y a un CRM. Nos permitió validar tareas concretas: responder consultas iniciales, recopilar información, registrar contactos, calificar prospectos y transferir la conversación a un asesor con mayor contexto. También nos mostró una limitación importante: cuando el cliente no entendía con quién estaba hablando o la transición hacia la persona se sentía abrupta, la experiencia perdía continuidad.", "Este aprendizaje nos llevó a replantear el producto. Camila 2.0 se está construyendo alrededor de una idea sencilla: el asesor no debería tener que aprender a configurar múltiples agentes y aplicaciones. Interactúa con una sola Camila, mientras ella coordina las capacidades necesarias detrás de escena.", "En lugar de asignar una prioridad opaca, estamos desarrollando un Lead Scoring explicable que compara cada contacto con el proyecto correspondiente. Cuando faltan datos, Camila debe mostrar qué información necesita y sugerir la siguiente pregunta, no inventar una conclusión.", "También buscamos que Camila ayude después del primer contacto: recordar oportunidades abandonadas, preparar un resumen diario, proponer mensajes basados en las últimas notas, registrar visitas y mantener visible la siguiente acción comercial. La meta no es que el asesor converse menos con sus clientes, sino que llegue mejor preparado a las conversaciones que realmente importan."], bullets: ["El contexto del negocio: proyectos, inventario, condiciones comerciales, preguntas frecuentes y playbooks.", "La gestión comercial: contactos, negocios, tareas, visitas, notas y estados del pipeline.", "Los agentes especializados: calificación, seguimiento, actualización del CRM, transferencia al asesor y generación de contenidos.", "La experiencia del asesor: una interfaz simple, móvil y preparada para trabajar dentro y fuera de la oficina."]},
+    { id: "cambio-trabajo", title: "Un constante cambio de trabajo", paragraphs: ["Construir Camila nos obligó a cuestionar una idea inicial: que bastaba con desarrollar un buen agente para que la empresa empezara a trabajar de otra manera. En la práctica, incluso una tecnología capaz puede fracasar si se instala sobre datos incompletos, procesos informales y hábitos que nadie está dispuesto a cambiar.", "En una de nuestras implementaciones decidimos pausar parte del desarrollo y probar primero herramientas existentes. La secuencia fue más útil que continuar acumulando funcionalidades: adoptar, capacitar, integrar, documentar y sólo después construir sobre lo aprendido. Pausar el producto no significó abandonar la visión; significó protegerla de nuestras propias suposiciones.", "También aprendimos que la adopción no ocurre el día del lanzamiento. Ocurre cuando el asesor descubre que actualizar un contacto toma menos tiempo, que ya no necesita revisar varias hojas para preparar su agenda o que puede recuperar el contexto de una conversación antes de llamar. Cada pequeño beneficio ayuda a reemplazar un hábito anterior por una nueva forma de trabajar.", "Por eso creemos que el agente casi nunca es el único problema. El resultado depende de la calidad de la información, de la claridad de los procesos, de la facilidad de la experiencia y de la frecuencia del feedback. Cuando una empresa cambia de herramienta sin cambiar su operación, digitaliza el mismo desorden. Cuando primero ordena su conocimiento y acompaña a su equipo, la IA puede convertirse en una verdadera extensión de sus capacidades.", "Nuestra visión para Camila continúa evolucionando con cada conversación y cada implementación. No buscamos construir otro chatbot que responda más mensajes. Queremos construir una compañera de trabajo que entienda el contexto inmobiliario, coordine agentes especializados y permita que los asesores recuperen tiempo para aquello que ninguna automatización debería quitarles: estar presentes para sus clientes."]}
+  ]
+};
+---
+<article class="insights-page">
+  <header class="insights-hero">
+    <img
+      class="insights-hero-image"
+      src="/images/camila-abstract-gradient-hero.webp"
+      alt=""
+      width="1607"
+      height="979"
+      loading="eager"
+      fetchpriority="high"
+    />
+    <div class="insights-hero-overlay"></div>
+    <div class="insights-hero-content">
+      <p class="insights-label">{copy.label}</p>
+      <h1>{copy.title}</h1>
+    </div>
+  </header>
+  <div class="insights-body">
+    <div class="insights-meta" aria-label={en ? "Publication information" : "Información de publicación"}>
+      <div class="insights-meta-facts">
+        <span>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3v3m10-3v3M4.5 9.5h15M6 5h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2Zm2.5 8h.01m3.49 0h.01m3.49 0h.01M8.5 17h.01m3.49 0h.01m3.49 0h.01" /></svg>
+          <time datetime="2026-09-03">{copy.date}</time>
+        </span>
+        <span>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" /><path d="M12 7v5l3.5 2" /></svg>
+          {copy.read}
+        </span>
+      </div>
+      <div class="insights-tags" aria-label={en ? "Tags" : "Etiquetas"}>
+        {copy.tags.map(tag => <span class="tag">#{tag.replaceAll(" ", "-").toLowerCase()}</span>)}
+      </div>
+    </div>
+    <div class="insights-grid">
+      <aside><p class="aside-title">{copy.author}</p><div class="author"><img src="/images/hann-vasquez-profile.jpg" alt="Hann Vásquez Rufasto" width="52" height="52" loading="lazy" /><div><strong>Hann Vásquez Rufasto</strong><small>{copy.role}</small></div></div><nav aria-label={copy.contents}><p class="aside-title">{copy.contents}</p><ol>{copy.sections.map(s => <li><a href={`#${s.id}`}>{s.title}</a></li>)}</ol></nav></aside>
+      <div class="article-copy">{copy.sections.map((section) => <section id={section.id}><h2>{section.title}</h2>{section.intro && <p>{section.intro}</p>}{section.paragraphs?.map(p => <p>{p}</p>)}{section.problems && <ol class="problems">{section.problems.map(problem => <li><h3>{problem[0]}</h3><p>{problem[1]}</p></li>)}</ol>}{section.bullets && <ul>{section.bullets.map(item => <li>{item}</li>)}</ul>}{section.closing && <p>{section.closing}</p>}{section.id === "camila" && <p>{en ? <>Learn more about <a href="/en/our-vision/">our vision for Camila</a> and explore her <a href="/en/#capabilities">AI capabilities</a>.</> : <>Conoce más sobre <a href="/our-vision/">nuestra visión para Camila</a> y explora sus <a href="/#capabilities">capacidades de IA</a>.</>}</p>}</section>)}</div>
+    </div>
+  </div>
+</article>
+<style>
+  .insights-page{background:var(--main-white);color:var(--ink)}.insights-hero{width:min(100%,1080px);margin:0 auto;background:#0d0718}.insights-hero img{display:block;width:100%;height:auto}.insights-body{width:min(calc(100% - 40px),944px);margin:0 auto;padding:48px 0 112px}.insights-label{text-align:center;margin:0 0 20px;color:var(--primary-purple);font-size:13px;font-weight:600;letter-spacing:.04em;text-transform:uppercase}.insights-body>h1{max-width:720px;margin:0 auto;text-align:center;font-family:"Funnel Display",Arial,sans-serif;font-size:clamp(2rem,4vw,3rem);font-weight:500;line-height:1.12}.insights-meta{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:14px 22px;margin-top:28px;color:rgb(31 28 34/72%);font-size:12px}.tag{padding:4px 9px;border-radius:999px;background:#faf8fa;font-size:10px}.insights-grid{display:grid;grid-template-columns:280px minmax(0,1fr);gap:52px;align-items:start;margin-top:64px}aside{overflow:hidden;border:1px solid var(--rose-white);border-radius:16px;padding:28px 24px;position:sticky;top:calc(var(--header-height) + 20px)}.aside-title{margin:0 0 18px;font-size:12px;font-weight:600;text-transform:uppercase}.author{display:flex;gap:13px;align-items:center;padding-bottom:24px;border-bottom:1px solid var(--rose-white)}.author img{border-radius:50%;object-fit:cover}.author strong,.author small{display:block}.author strong{font-size:14px}.author small{margin-top:4px;color:rgb(31 28 34/72%);font-size:12px}nav{padding-top:24px}nav ol{display:grid;gap:12px;margin:0;padding:0;list-style:none}nav a,.article-copy a{text-decoration:underline;text-underline-offset:3px;text-decoration-color:rgb(114 85 218/58%)}nav a{font-size:12px;line-height:1.35}.article-copy{color:rgb(31 28 34/78%);font-size:15px;line-height:1.6}.article-copy section{scroll-margin-top:calc(var(--header-height) + 24px);margin-top:54px}.article-copy section:first-child{margin-top:0}.article-copy h2{margin:0 0 18px;color:var(--ink);font-family:"Funnel Display",Arial,sans-serif;font-size:24px;line-height:1.25}.article-copy h3{margin:0 0 10px;color:var(--ink);font-size:16px}.article-copy p{margin:0 0 20px}.article-copy ul,.problems{display:grid;gap:16px;margin:0 0 22px;padding-left:22px}.problems{gap:26px}.problems p{margin:0}.article-copy a{color:var(--ink);font-weight:500}.article-copy a:hover{color:var(--primary-purple)}@media(max-width:760px){.insights-body{padding-top:38px}.insights-grid{grid-template-columns:1fr;gap:40px;margin-top:48px}aside{position:static}.article-copy h2{font-size:22px}}
+</style>
+<style>
+  .insights-hero {
+    position: relative;
+    display: grid;
+    width: 100%;
+    min-height: 254px;
+    overflow: hidden;
+    color: var(--main-white);
+    isolation: isolate;
+    place-items: center;
+  }
+
+  .insights-hero-image,
+  .insights-hero-overlay {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .insights-hero .insights-hero-image {
+    z-index: -2;
+    display: block;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 48%;
+  }
+
+  .insights-hero-overlay {
+    z-index: -1;
+    background: rgb(10 3 23 / 50%);
+  }
+
+  .insights-hero-content {
+    width: min(calc(100% - 40px), 900px);
+    padding: 38px 0 34px;
+    text-align: center;
+  }
+
+  .insights-hero .insights-label {
+    margin: 0 0 24px;
+    color: var(--main-white);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    line-height: 1;
+    text-transform: uppercase;
+  }
+
+  .insights-hero h1 {
+    margin: 0;
+    font-family: "Funnel Display", Arial, sans-serif;
+    font-size: clamp(2rem, 3.4vw, 2.625rem);
+    font-weight: 500;
+    letter-spacing: -0.015em;
+    line-height: 1.14;
+  }
+
+  .insights-meta {
+    flex-direction: column;
+    gap: 22px;
+    margin-top: 0;
+  }
+
+  .insights-meta-facts,
+  .insights-tags,
+  .insights-meta-facts span {
+    display: flex;
+    align-items: center;
+  }
+
+  .insights-meta-facts {
+    gap: 24px;
+  }
+
+  .insights-meta-facts span {
+    gap: 7px;
+  }
+
+  .insights-meta svg {
+    width: 17px;
+    height: 17px;
+    fill: none;
+    stroke: currentColor;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-width: 1.6;
+  }
+
+  .insights-tags {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+  }
+
+  .author img {
+    width: 52px;
+    height: 52px;
+    flex: 0 0 52px;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: center 22%;
+  }
+</style>

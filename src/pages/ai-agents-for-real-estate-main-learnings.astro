@@ -1,0 +1,14 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import InsightsArticle from "../components/InsightsArticle.astro";
+import SiteFooter from "../components/SiteFooter.astro";
+import SiteHeader from "../components/SiteHeader.astro";
+import heroCopy from "../i18n/es/hero.json";
+import footerCopy from "../i18n/es/footer.json";
+const title = "Implementando agentes de IA en inmobiliarias de Perú";
+const description = "Principales retos y aprendizajes implementando agentes de IA conversacional para expandir la capacidad de los asesores de venta en proyectos inmobiliarios.";
+const headerCopy = { ...heroCopy, languageHref: "/en/ai-agents-for-real-estate-main-learnings/" };
+---
+<BaseLayout lang="es" title={title} description={description} canonicalPath="/ai-agents-for-real-estate-main-learnings/" spanishPath="/ai-agents-for-real-estate-main-learnings/" englishPath="/en/ai-agents-for-real-estate-main-learnings/">
+  <SiteHeader data={headerCopy} homeHref="/" /><main><InsightsArticle /></main><SiteFooter data={footerCopy} homeHref="/" />
+</BaseLayout>

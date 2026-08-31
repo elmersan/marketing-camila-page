@@ -1,7 +1,7 @@
 import type { APIRoute } from "astro";
 
 const siteUrl = "https://www.brandlift.pe";
-const indexablePaths = ["/", "/planes-de-suscripcion/", "/our-vision/"];
+const indexablePaths = ["/", "/planes-de-suscripcion/", "/our-vision/", "/ai-agents-for-real-estate-main-learnings/", "/en/ai-agents-for-real-estate-main-learnings/"];
 
 export const prerender = true;
 
